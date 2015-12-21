@@ -2,8 +2,13 @@
 	"name": "sass-indented",
 	"displayName": "Sass (Indented)",
 	"description": "Indented Sass syntax support for VSCode",
-	"version": "0.0.1",
+	"version": "0.1.0",
+	"icon": "images/sass-logo-seal.svg",
 	"publisher": "robinbentley",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/robinbentley/vscode-sass-indented"
+	},
 	"engines": {
 		"vscode": "^0.10.1"
 	},
