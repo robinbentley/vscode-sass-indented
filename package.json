@@ -1,0 +1,31 @@
+{
+	"name": "sass-indented",
+	"displayName": "Sass (Indented)",
+	"description": "Indented Sass syntax support for VSCode",
+	"version": "0.0.1",
+	"publisher": "robinbentley",
+	"engines": {
+		"vscode": "^0.10.1"
+	},
+	"categories": [
+		"Languages",
+        "Snippets"
+	],
+	"contributes": {
+		"languages": [{
+			"id": "sass-indented",
+			"aliases": ["Sass (Indented)", "sass-indented"],
+			"extensions": [".sass"],
+			"configuration": "./sass-indented.configuration.json"
+		}],
+		"grammars": [{
+			"language": "sass-indented",
+			"scopeName": "source.sass",
+			"path": "./syntaxes/sass.tmLanguage"
+		}],
+		"snippets": [{
+			"language": "sass-indented",
+			"path": "./snippets/sass-indented.json"
+		}]
+	}
+}
