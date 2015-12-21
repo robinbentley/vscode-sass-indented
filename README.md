@@ -11,5 +11,8 @@ Sass seal logo is credit to [http://sass-lang.com/styleguide/brand](http://sass-
 These snippets are emmet-esque, I'm not sure how to plug into the built in emmet to use the library for this version of the sass syntax. If that's something someone can help with that would be appricated.
 At the moment they just have completion for all the standard CSS selectors. If there is no way to replace them with the built in emmet then I will write a full reference and improve them (e.g adding properties to selectors).
 
+## Contributing
+Clone this repo and follow the instructions for running/debugging extensions here [https://code.visualstudio.com/docs/extensions/overview](https://code.visualstudio.com/docs/extensions/overview)
+
 ## License
 [MIT - https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
