@@ -3,6 +3,7 @@ VSCode only has built in support for SCSS syntax so I have put this together for
 When opening a .sass file the syntax should set to Sass (Indented), using just Sass clashes with the built in support (Which should be Scss IMO)
 
 Syntax highlighing is credit to [https://github.com/nathos/sass-textmate-bundle](https://github.com/nathos/sass-textmate-bundle)
+Sass seal logo is credit to [http://sass-lang.com/styleguide/brand](http://sass-lang.com/styleguide/brand)
 
 ![Highlighting Example](https://raw.githubusercontent.com/robinbentley/vscode-sass-indented/master/images/screenshot.png)
 
