@@ -609,7 +609,7 @@
 		"body": "page-break-before: $0"
 	},
 	"page-break-inside": {
-		"prefix": "m",
+		"prefix": "pbi",
 		"body": "page-break-inside: $0"
 	},
 	"perspective": {
