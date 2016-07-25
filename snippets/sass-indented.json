@@ -510,7 +510,7 @@
 	},
 	"max-width": {
 		"prefix": "maxw",
-		"body": "max-height: $0"
+		"body": "max-width: $0"
 	},
 	"min-height": {
 		"prefix": "minh",
