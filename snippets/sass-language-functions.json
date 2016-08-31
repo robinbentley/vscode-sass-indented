@@ -16,7 +16,7 @@
 */
 
 {
-  // RGB functions
+  /* RGB functions */
   "rgb": {
     "prefix": "rgb",
     "body": "rgb(${red}, ${green}, ${blue})$0",
@@ -47,7 +47,7 @@
     "body": "mix(${color1}, ${color2}, ${[weight%]})$0",
     "description": "mix($color1, $color2, [$weight%]) - Mixes two colors together."
   },
-  // HSL functions
+  /* HSL functions */
   "hsl": {
     "prefix": "hsl",
     "body": "hsl(${hue}, ${saturation}, ${lightness})$0",
@@ -113,7 +113,7 @@
     "body": "invert(${color})$0",
     "description": "invert($color) - Returns the inverse of a color."
   },
-  // Opacity functions
+  /* Opacity functions */
   "alpha": {
     "prefix": "alpha",
     "body": "alpha(${color})$0",
@@ -139,9 +139,7 @@
     "body": "fade-out(${color}, ${amount})$0",
     "description": "fade-out($color, $amount) - Makes a color more transparent."
   },
-  // ie-hex-str($color)
-  // Converts a color into the format understood by IE filters.
-  // Other color functions
+  /* Other color functions */
   "adjust-color": {
     "prefix": "adjust-color",
     "body": "adjust-color(${color}, ${[red],} ${[green],} ${[blue],} ${[hue],} ${[saturation],} ${[lightness],} ${[alpha]})$0",
@@ -162,7 +160,7 @@
     "body": "ie-hex-str(${color})$0",
     "description": "ie-hex-str($color) - Converts a color into the format understood by IE filters."
   },
-  // String functions
+  /* String functions */
   "unquote": {
     "prefix": "unquote",
     "body": "unquote(${string})$0",
@@ -203,7 +201,7 @@
     "body": "to-lower-case(${string})$0",
     "description": "to-lower-case($string) - Converts a string to lower case."
   },
-  // Number functions
+  /* Number functions */
   "percentage": {
     "prefix": "percentage",
     "body": "percentage(${number})$0",
@@ -244,81 +242,83 @@
     "body": "random(${[limit]})$0",
     "description": "random([$limit]) - Returns a random number."
   },
+  /*
   // List functions
-  // "length": {
-  //   "prefix": "length",
-  //   "body": "length(${list})$0",
-  //   "description": "length($list) - Returns the length of a list."
-  // },
-  // "nth": {
-  //   "prefix": "nth(",
-  //   "body": "nth(${list}, ${n})$0",
-  //   "description": "nth($list, $n) - Returns a specific item in a list."
-  // },
-  // "set-nth": {
-  //   "prefix": "set-nth",
-  //   "body": "set-nth(${list}, ${n}, ${value})$0",
-  //   "description": "set-nth($list, $n, $value) - Replaces the nth item in a list."
-  // },
-  // "join": {
-  //   "prefix": "join",
-  //   "body": "join(${list1}, ${list2}, ${[separator]})$0",
-  //   "description": "join($list1, $list2, [$separator]) - Joins together two lists into one."
-  // },
-  // "append": {
-  //   "prefix": "append",
-  //   "body": "append(${list}, ${value}, ${[separator]})$0",
-  //   "description": "append($list, $value, [$separator]) - Appends a single value onto the end of a list."
-  // },
-  // "zip": {
-  //   "prefix": "zip",
-  //   "body": "zip(${lists...})$0",
-  //   "description": "zip($lists...) - Combines several lists into a single multidimensional list."
-  // },
-  // "index": {
-  //   "prefix": "index",
-  //   "body": "index(${list}, ${value})$0",
-  //   "description": "index($list, $value) - Returns the position of a value within a list."
-  // },
-  // "list-separator": {
-  //   "prefix": "list-separator",
-  //   "body": "list-separator(${list})$0",
-  //   "description": "list-separator($list) - Returns the separator of a list."
-  // },
+  "length": {
+    "prefix": "length",
+    "body": "length(${list})$0",
+    "description": "length($list) - Returns the length of a list."
+  },
+  "nth": {
+    "prefix": "nth(",
+    "body": "nth(${list}, ${n})$0",
+    "description": "nth($list, $n) - Returns a specific item in a list."
+  },
+  "set-nth": {
+    "prefix": "set-nth",
+    "body": "set-nth(${list}, ${n}, ${value})$0",
+    "description": "set-nth($list, $n, $value) - Replaces the nth item in a list."
+  },
+  "join": {
+    "prefix": "join",
+    "body": "join(${list1}, ${list2}, ${[separator]})$0",
+    "description": "join($list1, $list2, [$separator]) - Joins together two lists into one."
+  },
+  "append": {
+    "prefix": "append",
+    "body": "append(${list}, ${value}, ${[separator]})$0",
+    "description": "append($list, $value, [$separator]) - Appends a single value onto the end of a list."
+  },
+  "zip": {
+    "prefix": "zip",
+    "body": "zip(${lists...})$0",
+    "description": "zip($lists...) - Combines several lists into a single multidimensional list."
+  },
+  "index": {
+    "prefix": "index",
+    "body": "index(${list}, ${value})$0",
+    "description": "index($list, $value) - Returns the position of a value within a list."
+  },
+  "list-separator": {
+    "prefix": "list-separator",
+    "body": "list-separator(${list})$0",
+    "description": "list-separator($list) - Returns the separator of a list."
+  },
   // Map functions
-  // "map-get": {
-  //   "prefix": "map-get",
-  //   "body": "map-get(${map}, ${key})$0",
-  //   "description": "map-get($map, $key) - Returns the value in a map associated with a given key."
-  // },
-  // "map-merge": {
-  //   "prefix": "map-merge",
-  //   "body": "map-merge(${map1}, ${map2})$0",
-  //   "description": "map-merge($map1, $map2) - Merges two maps together into a new map."
-  // },
-  // "map-remove": {
-  //   "prefix": "map-remove",
-  //   "body": "map-remove(${map}, ${keys...})$0",
-  //   "description": "map-remove($map, $keys...) - Returns a new map with keys removed."
-  // },
-  // "map-keys": {
-  //   "prefix": "map-keys",
-  //   "body": "map-keys(${map})$0",
-  //   "description": "map-keys($map) - Returns a list of all keys in a map."
-  // },
-  // "map-values": {
-  //   "prefix": "map-values",
-  //   "body": "map-values(${map})$0",
-  //   "description": "map-values($map) - Returns a list of all values in a map."
-  // },
-  // "map-has-key": {
-  //   "prefix": "map-has-key",
-  //   "body": "map-has-key(${map}, ${key})$0",
-  //   "description": "map-has-key($map, $key) - Returns whether a map has a value associated with a given key."
-  // },
-  // "keywords": {
-  //   "prefix": "keywords",
-  //   "body": "keywords(${args})$0",
-  //   "description": "keywords($args) - Returns the keywords passed to a function that takes variable arguments."
-  // }
+  "map-get": {
+    "prefix": "map-get",
+    "body": "map-get(${map}, ${key})$0",
+    "description": "map-get($map, $key) - Returns the value in a map associated with a given key."
+  },
+  "map-merge": {
+    "prefix": "map-merge",
+    "body": "map-merge(${map1}, ${map2})$0",
+    "description": "map-merge($map1, $map2) - Merges two maps together into a new map."
+  },
+  "map-remove": {
+    "prefix": "map-remove",
+    "body": "map-remove(${map}, ${keys...})$0",
+    "description": "map-remove($map, $keys...) - Returns a new map with keys removed."
+  },
+  "map-keys": {
+    "prefix": "map-keys",
+    "body": "map-keys(${map})$0",
+    "description": "map-keys($map) - Returns a list of all keys in a map."
+  },
+  "map-values": {
+    "prefix": "map-values",
+    "body": "map-values(${map})$0",
+    "description": "map-values($map) - Returns a list of all values in a map."
+  },
+  "map-has-key": {
+    "prefix": "map-has-key",
+    "body": "map-has-key(${map}, ${key})$0",
+    "description": "map-has-key($map, $key) - Returns whether a map has a value associated with a given key."
+  },
+  "keywords": {
+    "prefix": "keywords",
+    "body": "keywords(${args})$0",
+    "description": "keywords($args) - Returns the keywords passed to a function that takes variable arguments."
+  }
+  */
 }
