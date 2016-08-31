@@ -1,0 +1,324 @@
+/*
+  Built in functions from the language
+  http://sass-lang.com/documentation/Sass/Script/Functions.html
+
+  - RGB functions
+  - HSL functions
+  - Opacity functions
+  - Other color functions
+  - String functions
+  - Number functions
+  - List functions (deactivated)
+  - Map functions (deactivated)
+  - Selector Functions (todo?, necessary?)
+  - Introspection Functions (todo?, necessary?)
+  - Miscellaneous Functions (todo?, necessary?)
+*/
+
+{
+  // RGB functions
+  "rgb": {
+    "prefix": "rgb",
+    "body": "rgb(${red}, ${green}, ${blue})$0",
+    "description": "rgb($red, $green, $blue) - Creates a color from red, green, and blue values."
+  },
+  "rgba": {
+    "prefix": "rgba",
+    "body": "rgba(${red}, ${green}, ${blue}, ${alpha})$0",
+    "description": "rgba($red, $green, $blue, $alpha) - Creates a color from red, green, blue and alpha values."
+  },
+  "red": {
+    "prefix": "red(",
+    "body": "red(${color})$0",
+    "description": "red($color) - Gets the red component of a color."
+  },
+  "green": {
+    "prefix": "green(",
+    "body": "green(${color})$0",
+    "description": "green($color) - Gets the green component of a color."
+  },
+  "blue": {
+    "prefix": "blue(",
+    "body": "blue(${color})$0",
+    "description": "blue($color) - Gets the blue component of a color."
+  },
+  "mix": {
+    "prefix": "mix",
+    "body": "mix(${color1}, ${color2}, ${[weight%]})$0",
+    "description": "mix($color1, $color2, [$weight%]) - Mixes two colors together."
+  },
+  // HSL functions
+  "hsl": {
+    "prefix": "hsl",
+    "body": "hsl(${hue}, ${saturation}, ${lightness})$0",
+    "description": "hsl($hue, $saturation, $lightness) - Creates a color from hue, saturation, and lightness values."
+  },
+  "hsla": {
+    "prefix": "hsla",
+    "body": "hsla(${hue}, ${saturation}, ${lightness}, ${alpha})$0",
+    "description": "hsl($hue, $saturation, $lightness, $alpha) - Creates a color from hue, saturation, lightness and alpha values."
+  },
+  "hue": {
+    "prefix": "hue",
+    "body": "hue(${color})$0",
+    "description": "hue($color) - Gets the hue component of a color."
+  },
+  "saturation": {
+    "prefix": "saturation",
+    "body": "saturation(${color})$0",
+    "description": "saturation($color) - Gets the saturation component of a color."
+  },
+  "lightness": {
+    "prefix": "lightness",
+    "body": "lightness(${color})$0",
+    "description": "lightness($color) - Gets the lightness component of a color."
+  },
+  "adjust-hue": {
+    "prefix": "adjust-hue",
+    "body": "adjust-hue(${color}, ${degrees})$0",
+    "description": "adjust-hue($color, $degrees) - Changes the hue of a color."
+  },
+  "lighten": {
+    "prefix": "lighten",
+    "body": "lighten(${color}, ${amount})$0",
+    "description": "lighten($color, $amount) - Makes a color lighter."
+  },
+  "darken": {
+    "prefix": "darken",
+    "body": "darken(${color}, ${amount})$0",
+    "description": "darken($color, $amount) - Makes a color darker."
+  },
+  "saturate": {
+    "prefix": "saturate",
+    "body": "saturate(${color}, ${amount})$0",
+    "description": "saturate($color, $amount) - Makes a color more saturated."
+  },
+  "desaturate": {
+    "prefix": "desaturate",
+    "body": "desaturate(${color}, ${amount})$0",
+    "description": "desaturate($color, $amount) - Makes a color less saturated."
+  },
+  "greyscale": {
+    "prefix": "greyscale",
+    "body": "greyscale(${color})$0",
+    "description": "greyscale($color) - Converts a color to grayscale."
+  },
+  "complement": {
+    "prefix": "complement",
+    "body": "complement(${color})$0",
+    "description": "complement($color) - Returns the complement of a color."
+  },
+  "invert": {
+    "prefix": "invert",
+    "body": "invert(${color})$0",
+    "description": "invert($color) - Returns the inverse of a color."
+  },
+  // Opacity functions
+  "alpha": {
+    "prefix": "alpha",
+    "body": "alpha(${color})$0",
+    "description": "alpha($color) - Gets the alpha component (opacity) of a color."
+  },
+  "opacify": {
+    "prefix": "opacify",
+    "body": "opacify(${color}, ${amount})$0",
+    "description": "opacify($color, $amount) - Makes a color more opaque."
+  },
+  "fade-in": {
+    "prefix": "fade-in",
+    "body": "fade-in(${color}, ${amount})$0",
+    "description": "fade-in($color, $amount) - Makes a color more opaque."
+  },
+  "transparentize": {
+    "prefix": "transparentize",
+    "body": "transparentize(${color}, ${amount})$0",
+    "description": "transparentize($color, $amount) - Makes a color more transparent."
+  },
+  "fade-out": {
+    "prefix": "fade-out",
+    "body": "fade-out(${color}, ${amount})$0",
+    "description": "fade-out($color, $amount) - Makes a color more transparent."
+  },
+  // ie-hex-str($color)
+  // Converts a color into the format understood by IE filters.
+  // Other color functions
+  "adjust-color": {
+    "prefix": "adjust-color",
+    "body": "adjust-color(${color}, ${[red],} ${[green],} ${[blue],} ${[hue],} ${[saturation],} ${[lightness],} ${[alpha]})$0",
+    "description": "adjust-color($color, [$red], [$green], [$blue], [$hue], [$saturation], [$lightness], [$alpha]) - Increases or decreases one or more components of a color."
+  },
+  "scale-color": {
+    "prefix": "scale-color",
+    "body": "scale-color(${color}, ${[red],} ${[green],} ${[blue],} ${[saturation],} ${[lightness],} ${[alpha]})$0",
+    "description": "scale-color($color, [$red], [$green], [$blue], [$saturation], [$lightness], [$alpha]) - Fluidly scales one or more properties of a color."
+  },
+  "change-color": {
+    "prefix": "change-color",
+    "body": "change-color(${color}, ${[red],} ${[green],} ${[blue],} ${[saturation],} ${[lightness],} ${[alpha]})$0",
+    "description": "change-color($color, [$red], [$green], [$blue], [$saturation], [$lightness], [$alpha]) - Changes one or more properties of a color."
+  },
+  "ie-hex-str": {
+    "prefix": "ie-hex-str",
+    "body": "ie-hex-str(${color})$0",
+    "description": "ie-hex-str($color) - Converts a color into the format understood by IE filters."
+  },
+  // String functions
+  "unquote": {
+    "prefix": "unquote",
+    "body": "unquote(${string})$0",
+    "description": "unquote($string) - Removes quotes from a string."
+  },
+  "quote": {
+    "prefix": "quote",
+    "body": "quote(${string})$0",
+    "description": "quote($string) - Adds quotes to a string."
+  },
+  "str-length": {
+    "prefix": "str-length",
+    "body": "str-length(${string})$0",
+    "description": "str-length($string) - Returns the number of characters in a string."
+  },
+  "str-insert": {
+    "prefix": "str-insert",
+    "body": "str-insert(${string}, ${insert}, ${index})$0",
+    "description": "str-insert($string, $insert, $index) - Inserts $insert into $string at $index."
+  },
+  "str-index": {
+    "prefix": "str-index",
+    "body": "str-index(${string}, ${substring})$0",
+    "description": "str-index($string, $substring) - Returns the index of the first occurrence of $substring in $string."
+  },
+  "str-slice": {
+    "prefix": "str-slice",
+    "body": "str-slice(${string}, ${start-at}, ${[end-at]})$0",
+    "description": "str-slice($string, $start-at, $end-at) - Extracts a substring from $string."
+  },
+  "to-upper-case": {
+    "prefix": "to-upper-case",
+    "body": "to-upper-case(${string})$0",
+    "description": "to-upper-case($string) - Converts a string to upper case."
+  },
+  "to-lower-case": {
+    "prefix": "to-lower-case",
+    "body": "to-lower-case(${string})$0",
+    "description": "to-lower-case($string) - Converts a string to lower case."
+  },
+  // Number functions
+  "percentage": {
+    "prefix": "percentage",
+    "body": "percentage(${number})$0",
+    "description": "percentage($number) - Converts a unitless number to a percentage."
+  },
+  "round": {
+    "prefix": "round",
+    "body": "round(${number})$0",
+    "description": "round($number) - Rounds a number to the nearest whole number."
+  },
+  "ceil": {
+    "prefix": "ceil",
+    "body": "ceil(${number})$0",
+    "description": "ceil($number) - Rounds a number up to the next whole number."
+  },
+  "floor": {
+    "prefix": "floor",
+    "body": "floor(${number})$0",
+    "description": "floor($number) - Rounds a number down to the next whole number."
+  },
+  "abs": {
+    "prefix": "abs",
+    "body": "abs(${number})$0",
+    "description": "abs($number) - Returns the absolute value of a number."
+  },
+  "min": {
+    "prefix": "min(",
+    "body": "min(${numbers...})$0",
+    "description": "min($numbers...) - Finds the minimum of several numbers."
+  },
+  "max": {
+    "prefix": "max(",
+    "body": "max(${numbers...})$0",
+    "description": "max($numbers...) - Finds the maximum of several numbers."
+  },
+  "random": {
+    "prefix": "random",
+    "body": "random(${[limit]})$0",
+    "description": "random([$limit]) - Returns a random number."
+  },
+  // List functions
+  // "length": {
+  //   "prefix": "length",
+  //   "body": "length(${list})$0",
+  //   "description": "length($list) - Returns the length of a list."
+  // },
+  // "nth": {
+  //   "prefix": "nth(",
+  //   "body": "nth(${list}, ${n})$0",
+  //   "description": "nth($list, $n) - Returns a specific item in a list."
+  // },
+  // "set-nth": {
+  //   "prefix": "set-nth",
+  //   "body": "set-nth(${list}, ${n}, ${value})$0",
+  //   "description": "set-nth($list, $n, $value) - Replaces the nth item in a list."
+  // },
+  // "join": {
+  //   "prefix": "join",
+  //   "body": "join(${list1}, ${list2}, ${[separator]})$0",
+  //   "description": "join($list1, $list2, [$separator]) - Joins together two lists into one."
+  // },
+  // "append": {
+  //   "prefix": "append",
+  //   "body": "append(${list}, ${value}, ${[separator]})$0",
+  //   "description": "append($list, $value, [$separator]) - Appends a single value onto the end of a list."
+  // },
+  // "zip": {
+  //   "prefix": "zip",
+  //   "body": "zip(${lists...})$0",
+  //   "description": "zip($lists...) - Combines several lists into a single multidimensional list."
+  // },
+  // "index": {
+  //   "prefix": "index",
+  //   "body": "index(${list}, ${value})$0",
+  //   "description": "index($list, $value) - Returns the position of a value within a list."
+  // },
+  // "list-separator": {
+  //   "prefix": "list-separator",
+  //   "body": "list-separator(${list})$0",
+  //   "description": "list-separator($list) - Returns the separator of a list."
+  // },
+  // Map functions
+  // "map-get": {
+  //   "prefix": "map-get",
+  //   "body": "map-get(${map}, ${key})$0",
+  //   "description": "map-get($map, $key) - Returns the value in a map associated with a given key."
+  // },
+  // "map-merge": {
+  //   "prefix": "map-merge",
+  //   "body": "map-merge(${map1}, ${map2})$0",
+  //   "description": "map-merge($map1, $map2) - Merges two maps together into a new map."
+  // },
+  // "map-remove": {
+  //   "prefix": "map-remove",
+  //   "body": "map-remove(${map}, ${keys...})$0",
+  //   "description": "map-remove($map, $keys...) - Returns a new map with keys removed."
+  // },
+  // "map-keys": {
+  //   "prefix": "map-keys",
+  //   "body": "map-keys(${map})$0",
+  //   "description": "map-keys($map) - Returns a list of all keys in a map."
+  // },
+  // "map-values": {
+  //   "prefix": "map-values",
+  //   "body": "map-values(${map})$0",
+  //   "description": "map-values($map) - Returns a list of all values in a map."
+  // },
+  // "map-has-key": {
+  //   "prefix": "map-has-key",
+  //   "body": "map-has-key(${map}, ${key})$0",
+  //   "description": "map-has-key($map, $key) - Returns whether a map has a value associated with a given key."
+  // },
+  // "keywords": {
+  //   "prefix": "keywords",
+  //   "body": "keywords(${args})$0",
+  //   "description": "keywords($args) - Returns the keywords passed to a function that takes variable arguments."
+  // }
+}
