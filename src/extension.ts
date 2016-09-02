@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   const sassCompletion = new SassCompletion();
   const sassCompletionRegister =
-    vscode.languages.registerCompletionItemProvider('sass-indented', sassCompletion, '\\.', '-', '$', '@');
+    vscode.languages.registerCompletionItemProvider('sass-indented', sassCompletion, '\\.', '@');
 
   context.subscriptions.push(sassCompletionRegister);
 }
