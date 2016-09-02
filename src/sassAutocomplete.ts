@@ -20,12 +20,12 @@ import * as cssSchema from './schemas/cssSchema';
 import sassSchema from './schemas/sassSchema';
 
 /**
- * Naive check whether currentWord is class or id
+ * Naive check whether currentWord is class, id or placeholder
  * @param {String} currentWord
  * @return {Boolean}
  */
 export function isClassOrId(currentWord:string) : boolean {
-  return currentWord.startsWith('.') || currentWord.startsWith('#') || currentWord.startsWith('&');
+  return currentWord.startsWith('.') || currentWord.startsWith('#') || currentWord.startsWith('%');
 }
 
 /**
