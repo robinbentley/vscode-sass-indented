@@ -45,10 +45,6 @@
             {
                 "language": "sass-indented",
                 "path": "./snippets/sass-indented.json"
-            },
-            {
-                "language": "sass-indented",
-                "path": "./snippets/sass-language-functions.json"
             }
         ]
     },

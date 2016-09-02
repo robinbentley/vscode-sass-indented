@@ -12,63 +12,7 @@
     ],
     "description": "Create a new mixin"
   },
-  "extend": {
-    "prefix": "extend",
-    "body": "@extend $0",
-    "description": "Inherit the styles of another selector"
-  },
-  "@extend": {
-    "prefix": "@extend",
-    "body": "@extend $0",
-    "description": "Inherit the styles of another selector"
-  },
-  "at-root": {
-    "prefix": "atroot",
-    "body": [
-      "@at-root ${0:selector}",
-      "\t$1"
-    ],
-    "description": "Causes one or more rules to be emitted at the root of the document"
-  },
-  "@at-root": {
-    "prefix": "@atroot",
-    "body": [
-      "@at-root ${0:selector}",
-      "\t$1"
-    ],
-    "description": "Causes one or more rules to be emitted at the root of the document"
-  },
-  "debug": {
-    "prefix": "debug",
-    "body": "@debug $0",
-    "description": "Prints the value to the standard error output stream"
-  },
-  "@debug": {
-    "prefix": "@debug",
-    "body": "@debug $0",
-    "description": "Prints the value to the standard error output stream"
-  },
-  "warn": {
-    "prefix": "warn",
-    "body": "@warn $0",
-    "description": "Prints the value to the standard error output stream"
-  },
-  "@warn": {
-    "prefix": "@warn",
-    "body": "@warn $0",
-    "description": "Prints the value to the standard error output stream"
-  },
-  "error": {
-    "prefix": "error",
-    "body": "@error $0",
-    "description": "Throws the value as a fatal error"
-  },
-  "@error": {
-    "prefix": "@error",
-    "body": "@error $0",
-    "description": "Throws the value as a fatal error"
-  },
-  "if-statement": {
+  "@if-statement": {
     "prefix": "if",
     "body": [
       "@if ${0:statement}",
@@ -76,7 +20,7 @@
     ],
     "description": "@if statement (e.g @if 1 + 1 == 2)"
   },
-  "for-loop": {
+  "@for-loop": {
     "prefix": "for",
     "body": [
       "@for $${0:var} from ${1:1} through ${2:10}",
@@ -84,7 +28,7 @@
     ],
     "description": "@for loop"
   },
-  "each-loop": {
+  "@each-loop": {
     "prefix": "each",
     "body": [
       "@each $${0:var} in ${1:list/map}",
@@ -92,7 +36,7 @@
     ],
     "description": "@each loop"
   },
-  "while-loop": {
+  "@while-loop": {
     "prefix": "while",
     "body": [
       "@while $${0:i} ${1:statement}",

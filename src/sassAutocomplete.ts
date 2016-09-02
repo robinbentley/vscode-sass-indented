@@ -17,6 +17,7 @@ import {
 } from 'vscode';
 
 import * as cssSchema from './schemas/cssSchema';
+import sassSchema from './schemas/sassSchema';
 
 /**
  * Naive check whether currentWord is class or id
@@ -151,7 +152,8 @@ class SassCompletion implements CompletionItemProvider {
     const completions = [].concat(
       atRules,
       properties,
-      values
+      values,
+      sassSchema
     );
 
     return completions;
