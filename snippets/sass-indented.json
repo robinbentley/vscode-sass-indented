@@ -12,36 +12,61 @@
     ],
     "description": "Create a new mixin"
   },
-  "import": {
-    "prefix": "import",
-    "body": "@import \"$0\""
-  },
-  "import-url": {
-    "prefix": "importurl",
-    "body": "@import url($0)"
-  },
   "extend": {
     "prefix": "extend",
-    "body": "@extend $0"
+    "body": "@extend $0",
+    "description": "Inherit the styles of another selector"
+  },
+  "@extend": {
+    "prefix": "@extend",
+    "body": "@extend $0",
+    "description": "Inherit the styles of another selector"
   },
   "at-root": {
     "prefix": "atroot",
     "body": [
       "@at-root ${0:selector}",
       "\t$1"
-    ]
+    ],
+    "description": "Causes one or more rules to be emitted at the root of the document"
+  },
+  "@at-root": {
+    "prefix": "@atroot",
+    "body": [
+      "@at-root ${0:selector}",
+      "\t$1"
+    ],
+    "description": "Causes one or more rules to be emitted at the root of the document"
   },
   "debug": {
     "prefix": "debug",
-    "body": "@debug $0"
+    "body": "@debug $0",
+    "description": "Prints the value to the standard error output stream"
+  },
+  "@debug": {
+    "prefix": "@debug",
+    "body": "@debug $0",
+    "description": "Prints the value to the standard error output stream"
   },
   "warn": {
     "prefix": "warn",
-    "body": "@warn $0"
+    "body": "@warn $0",
+    "description": "Prints the value to the standard error output stream"
+  },
+  "@warn": {
+    "prefix": "@warn",
+    "body": "@warn $0",
+    "description": "Prints the value to the standard error output stream"
   },
   "error": {
     "prefix": "error",
-    "body": "@error $0"
+    "body": "@error $0",
+    "description": "Throws the value as a fatal error"
+  },
+  "@error": {
+    "prefix": "@error",
+    "body": "@error $0",
+    "description": "Throws the value as a fatal error"
   },
   "if-statement": {
     "prefix": "if",
