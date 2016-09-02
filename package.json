@@ -9,6 +9,7 @@
         "type": "git",
         "url": "https://github.com/robinbentley/vscode-sass-indented"
     },
+    "bugs": "https://github.com/robinbentley/vscode-sass-indented/issues",
     "engines": {
         "vscode": "^1.0.0"
     },
