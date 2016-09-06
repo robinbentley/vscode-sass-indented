@@ -1,14 +1,19 @@
-# Indented Sass support for VSCode
+# Indented Sass syntax highlighting, autocomplete & snippets for VSCode
 VSCode only has built in support for SCSS syntax so I have put this together for people who use the indented syntax.
-When opening a .sass file the syntax should set to _Sass (Indented)_, using just _Sass_ clashes with the built in support unfortunately (Which should be Scss IMO)
+~~When opening a .sass file the syntax should set to _Sass (Indented)_, using just _Sass_ clashes with the built in support unfortunately (Which should be Scss IMO)~~
+
+**As of 1.3 the built in support id has been renamed from ```sass``` to ```scss``` meaning I have been able to drop ```-indented``` from the language id. The extension now requires a minimum VSCode version 1.4. If you have any issues please update your VSCode first.**
 
 ![Highlighting Example](https://raw.githubusercontent.com/robinbentley/vscode-sass-indented/master/images/screenshot.png)
 
 ### Installing
-Search for Sass from the extension installer within VSCode
+Search for Sass from the extension installer within VSCode or put this into the command palette   
+```
+ext install sass-indented
+```
 
 ### Autocompletion & Emmet
-Autocompletion for css properties and built in language functions _(@warn, @at-root, lighten(), darken() etc)_ is now built in. As of v1.3 VSCode supports Emmet in .sass files, the original snippets for css properties have been removed.
+Autocompletion for css properties and built in language functions _(@warn, @at-root, lighten(), darken() etc)_ is now built in. As of version 1.3 VSCode supports Emmet in .sass files, the original snippets for css properties have been removed.
 
 ### Snippets
 Snippets have been reduced to a few time savers.

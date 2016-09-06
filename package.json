@@ -1,7 +1,7 @@
 {
     "name": "sass-indented",
-    "displayName": "Sass (Indented)",
-    "description": "Indented Sass syntax support for VSCode",
+    "displayName": "Sass",
+    "description": "Indented Sass syntax highlighting, autocomplete & snippets",
     "version": "1.0.0",
     "icon": "images/sass-logo-seal.svg",
     "publisher": "robinbentley",
@@ -11,10 +11,10 @@
     },
     "bugs": "https://github.com/robinbentley/vscode-sass-indented/issues",
     "engines": {
-        "vscode": "^1.0.0"
+        "vscode": "^1.4.0"
     },
     "activationEvents": [
-        "onLanguage:sass-indented"
+        "onLanguage:sass"
     ],
     "main": "./out/src/extension",
     "categories": [
@@ -24,28 +24,29 @@
     "contributes": {
         "languages": [
             {
-                "id": "sass-indented",
+                "id": "sass",
                 "aliases": [
-                    "Sass (Indented)",
+                    "Sass",
                     "sass-indented"
                 ],
                 "extensions": [
-                    ".sass"
+                    ".sass",
+                    ".sass.erb"
                 ],
-                "configuration": "./sass-indented.configuration.json"
+                "configuration": "./sass.configuration.json"
             }
         ],
         "grammars": [
             {
-                "language": "sass-indented",
+                "language": "sass",
                 "scopeName": "source.sass",
                 "path": "./syntaxes/sass.tmLanguage"
             }
         ],
         "snippets": [
             {
-                "language": "sass-indented",
-                "path": "./snippets/sass-indented.json"
+                "language": "sass",
+                "path": "./snippets/sass.json"
             }
         ]
     },
