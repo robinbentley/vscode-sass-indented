@@ -1,7 +1,7 @@
 {
     "name": "sass-indented",
     "displayName": "Sass",
-    "description": "Indented Sass syntax support for VSCode",
+    "description": "Indented Sass syntax highlighting, autocomplete & snippets",
     "version": "1.0.0",
     "icon": "images/sass-logo-seal.svg",
     "publisher": "robinbentley",
@@ -30,9 +30,10 @@
                     "sass-indented"
                 ],
                 "extensions": [
-                    ".sass"
+                    ".sass",
+                    ".sass.erb"
                 ],
-                "configuration": "./sass-indented.configuration.json"
+                "configuration": "./sass.configuration.json"
             }
         ],
         "grammars": [
@@ -45,7 +46,7 @@
         "snippets": [
             {
                 "language": "sass",
-                "path": "./snippets/sass-indented.json"
+                "path": "./snippets/sass.json"
             }
         ]
     },
