@@ -18,13 +18,16 @@ import {
 
 import * as cssSchema from './schemas/cssSchema';
 import sassSchema from './schemas/sassSchema';
+import fs = require('fs');
+
+let variables: CompletionItem[] = [];
 
 /**
  * Naive check whether currentWord is class, id or placeholder
  * @param {String} currentWord
  * @return {Boolean}
  */
-export function isClassOrId(currentWord:string) : boolean {
+export function isClassOrId(currentWord: string): boolean {
   return currentWord.startsWith('.') || currentWord.startsWith('#') || currentWord.startsWith('%');
 }
 
@@ -33,7 +36,7 @@ export function isClassOrId(currentWord:string) : boolean {
  * @param {String} currentWord
  * @return {Boolean}
  */
-export function isAtRule(currentWord:string) : boolean {
+export function isAtRule(currentWord: string): boolean {
   return currentWord.startsWith('\@');
 }
 
@@ -43,7 +46,7 @@ export function isAtRule(currentWord:string) : boolean {
  * @param {String} currentWord
  * @return {Boolean}
  */
-export function isValue(cssSchema, currentWord:string) : boolean {
+export function isValue(cssSchema, currentWord: string): boolean {
   const property = getPropertyName(currentWord);
 
   return property && Boolean(findPropertySchema(cssSchema, property));
@@ -54,7 +57,7 @@ export function isValue(cssSchema, currentWord:string) : boolean {
  * @param {String} currentWord
  * @return {String}
  */
-export function getPropertyName(currentWord:string) : string {
+export function getPropertyName(currentWord: string): string {
   return currentWord.trim().replace(':', ' ').split(' ')[0];
 }
 
@@ -64,7 +67,7 @@ export function getPropertyName(currentWord:string) : string {
  * @param {String} property
  * @return {Object}
  */
-export function findPropertySchema(cssSchema, property:string) {
+export function findPropertySchema(cssSchema, property: string) {
   return cssSchema.data.css.properties.find(item => item.name === property);
 }
 
@@ -74,7 +77,7 @@ export function findPropertySchema(cssSchema, property:string) {
  * @param {String} currentWord
  * @return {CompletionItem}
  */
-export function getAtRules(cssSchema, currentWord:string) : CompletionItem[] {
+export function getAtRules(cssSchema, currentWord: string): CompletionItem[] {
   if (!isAtRule(currentWord)) return [];
 
   return cssSchema.data.css.atdirectives.map(property => {
@@ -93,7 +96,7 @@ export function getAtRules(cssSchema, currentWord:string) : CompletionItem[] {
  * @param {String} currentWord
  * @return {CompletionItem}
  */
-export function getProperties(cssSchema, currentWord:string, useSeparator:boolean) : CompletionItem[] {
+export function getProperties(cssSchema, currentWord: string, useSeparator: boolean): CompletionItem[] {
   if (isClassOrId(currentWord) || isAtRule(currentWord)) return [];
 
   return cssSchema.data.css.properties.map(property => {
@@ -107,13 +110,40 @@ export function getProperties(cssSchema, currentWord:string, useSeparator:boolea
   });
 }
 
+export function getVariables(): Promise<boolean> {
+  return new Promise(resolve => {
+    workspace.findFiles('{**/*.scss,**/*.sass}', '').then(items => {
+      items.forEach(item => {
+        let content = fs.readFileSync(item.fsPath).toString();
+        // Variables pattern
+        let pattern = /((\$.+?):(.+?);?)$/igm;
+        let match: string[] = [];
+        // Create completion item for each matched variable
+        while ((match = pattern.exec(content)) !== null) {
+          let label = match[2].trim();
+          let value = match[3].trim();
+          const completionItem = new CompletionItem(label);
+          completionItem.detail = value;
+          if (/^(#|rgba?)/i.test(value)) {
+            completionItem.kind = CompletionItemKind.Color;
+          } else {
+            completionItem.kind = CompletionItemKind.Value;
+          }
+          variables.push(completionItem);
+        }
+      });
+      resolve(true);
+    });
+  });
+}
+
 /**
  * Returns values for current property for completion list
  * @param {Object} cssSchema
  * @param {String} currentWord
  * @return {CompletionItem}
  */
-export function getValues(cssSchema, currentWord:string) : CompletionItem[] {
+export function getValues(cssSchema, currentWord: string): CompletionItem[] {
   const property = getPropertyName(currentWord);
   const values = findPropertySchema(cssSchema, property).values;
 
@@ -130,7 +160,7 @@ export function getValues(cssSchema, currentWord:string) : CompletionItem[] {
 }
 
 class SassCompletion implements CompletionItemProvider {
-  provideCompletionItems(document: TextDocument, position: Position, token: CancellationToken) : CompletionItem[] {
+  provideCompletionItems(document: TextDocument, position: Position, token: CancellationToken): CompletionItem[] {
     const start = new Position(position.line, 0);
     const range = new Range(start, position);
     const currentWord = document.getText(range).trim();
@@ -139,8 +169,8 @@ class SassCompletion implements CompletionItemProvider {
     const config = workspace.getConfiguration('sass-indented');
 
     let atRules = [],
-        properties = [],
-        values = [];
+      properties = [],
+      values = [];
 
     if (value) {
       values = getValues(cssSchema, currentWord);
@@ -153,6 +183,7 @@ class SassCompletion implements CompletionItemProvider {
       atRules,
       properties,
       values,
+      variables,
       sassSchema
     );
 

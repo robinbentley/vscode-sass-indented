@@ -14,7 +14,8 @@
         "vscode": "^1.4.0"
     },
     "activationEvents": [
-        "onLanguage:sass"
+        "onLanguage:sass",
+        "onLanguage:scss"
     ],
     "main": "./out/src/extension",
     "categories": [
@@ -31,6 +32,7 @@
                 ],
                 "extensions": [
                     ".sass",
+                    ".scss",
                     ".sass.erb"
                 ],
                 "configuration": "./sass.configuration.json"
