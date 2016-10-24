@@ -13,14 +13,15 @@ import {
   Position,
   Range,
   TextDocument,
-  workspace
+  workspace,
+  Uri
 } from 'vscode';
 
 import * as cssSchema from './schemas/cssSchema';
 import sassSchema from './schemas/sassSchema';
 import fs = require('fs');
 
-let variables: CompletionItem[] = [];
+let files: File[] = [];
 
 /**
  * Naive check whether currentWord is class, id or placeholder
@@ -110,31 +111,71 @@ export function getProperties(cssSchema, currentWord: string, useSeparator: bool
   });
 }
 
-export function getVariables(): Promise<boolean> {
+export function parseFile(fileUri: Uri, isDelete: boolean = false) {
+  if (!isDelete) {
+    let content = fs.readFileSync(fileUri.fsPath).toString();
+    // Variables pattern
+    let pattern = /((\$.+?):(.+?);?)$/igm;
+    let match: string[] = [];
+    let file: File = new File;
+    file.file = fileUri;
+    // Create completion item for each matched variable
+    while ((match = pattern.exec(content)) !== null) {
+      let label = match[2].trim();
+      let value = match[3].trim();
+      const completionItem = new CompletionItem(label);
+      completionItem.detail = value;
+      if (/^(#|rgba?)/i.test(value)) {
+        completionItem.kind = CompletionItemKind.Color;
+      } else {
+        completionItem.kind = CompletionItemKind.Value;
+      }
+      file.completion.push(completionItem);
+    }
+    addFile(fileUri, file);
+  } else {
+    removeFile(fileUri);
+  }
+}
+
+export function addFile(fileUri: Uri, file: File) {
+  let newItem: boolean = true;
+  for (let i = 0; i < files.length; i++) {
+    if (files[i].file.fsPath == fileUri.fsPath) {
+      files[i].completion = file.completion;
+      newItem = false;
+    }
+  }
+  if (newItem) { files.push(file); }
+}
+
+export function removeFile(fileUri: Uri) {
+  for (let i = 0; i < files.length; i++) {
+    if (files[i].file.fsPath == fileUri.fsPath) {
+      files.splice(i, 1);
+      break;
+    }
+  }
+}
+
+export function getWorkspaceFiles(): Promise<boolean> {
+  files = [];
   return new Promise(resolve => {
     workspace.findFiles('{**/*.scss,**/*.sass}', '').then(items => {
       items.forEach(item => {
-        let content = fs.readFileSync(item.fsPath).toString();
-        // Variables pattern
-        let pattern = /((\$.+?):(.+?);?)$/igm;
-        let match: string[] = [];
-        // Create completion item for each matched variable
-        while ((match = pattern.exec(content)) !== null) {
-          let label = match[2].trim();
-          let value = match[3].trim();
-          const completionItem = new CompletionItem(label);
-          completionItem.detail = value;
-          if (/^(#|rgba?)/i.test(value)) {
-            completionItem.kind = CompletionItemKind.Color;
-          } else {
-            completionItem.kind = CompletionItemKind.Value;
-          }
-          variables.push(completionItem);
-        }
+        parseFile(item);
       });
       resolve(true);
     });
   });
+}
+
+export function getVariables(): CompletionItem[] {
+  let variables = [];
+  files.forEach(file => {
+    file.completion.forEach(comp => { variables.push(comp); });
+  });
+  return variables;
 }
 
 /**
@@ -170,13 +211,15 @@ class SassCompletion implements CompletionItemProvider {
 
     let atRules = [],
       properties = [],
-      values = [];
+      values = [],
+      variables = [];
 
     if (value) {
       values = getValues(cssSchema, currentWord);
     } else {
       atRules = getAtRules(cssSchema, currentWord);
       properties = getProperties(cssSchema, currentWord, config.get('useSeparator', true));
+      variables = getVariables();
     }
 
     const completions = [].concat(
@@ -189,6 +232,11 @@ class SassCompletion implements CompletionItemProvider {
 
     return completions;
   }
+}
+
+class File {
+  completion: CompletionItem[] = [];
+  file: Uri;
 }
 
 export default SassCompletion;
