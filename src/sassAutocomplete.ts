@@ -20,8 +20,10 @@ import {
 import * as cssSchema from './schemas/cssSchema';
 import sassSchema from './schemas/sassSchema';
 import fs = require('fs');
+let globToRegExp = require('glob-to-regexp');
 
 let files: File[] = [];
+let sassConfig: { files?: string[], exclude?: string[] } = {};
 
 /**
  * Naive check whether currentWord is class, id or placeholder
@@ -111,7 +113,19 @@ export function getProperties(cssSchema, currentWord: string, useSeparator: bool
   });
 }
 
+/**
+ * Parses a sass file for auto completion
+ *
+ * @export
+ * @param {Uri} fileUri
+ * @param {boolean} [isDelete=false]
+ * @returns
+ */
 export function parseFile(fileUri: Uri, isDelete: boolean = false) {
+  let patterns = getFilePatterns();
+  let include = globToRegExp(patterns.include, { extended: true, flags: 'i' });
+  let exclude = globToRegExp(patterns.exclude, { extended: true, flags: 'i' });
+  if (!include.test(fileUri.path) || exclude.test(fileUri.path)) { return; }
   if (!isDelete) {
     let content = fs.readFileSync(fileUri.fsPath).toString();
     // Variables pattern
@@ -123,7 +137,7 @@ export function parseFile(fileUri: Uri, isDelete: boolean = false) {
     while ((match = pattern.exec(content)) !== null) {
       let label = match[2].trim();
       let value = match[3].trim();
-      const completionItem = new CompletionItem(label);
+      let completionItem = new CompletionItem(label);
       completionItem.detail = value;
       if (/^(#|rgba?)/i.test(value)) {
         completionItem.kind = CompletionItemKind.Color;
@@ -138,17 +152,31 @@ export function parseFile(fileUri: Uri, isDelete: boolean = false) {
   }
 }
 
+/**
+ * Adds a file to the list of autocomlete files
+ *
+ * @export
+ * @param {Uri} fileUri
+ * @param {File} file
+ */
 export function addFile(fileUri: Uri, file: File) {
   let newItem: boolean = true;
   for (let i = 0; i < files.length; i++) {
     if (files[i].file.fsPath == fileUri.fsPath) {
       files[i].completion = file.completion;
       newItem = false;
+      break;
     }
   }
   if (newItem) { files.push(file); }
 }
 
+/**
+ * Removes a file from the list of autocomplete files
+ *
+ * @export
+ * @param {Uri} fileUri
+ */
 export function removeFile(fileUri: Uri) {
   for (let i = 0; i < files.length; i++) {
     if (files[i].file.fsPath == fileUri.fsPath) {
@@ -158,10 +186,17 @@ export function removeFile(fileUri: Uri) {
   }
 }
 
+/**
+ * Rebuilds the workspace files
+ *
+ * @export
+ * @returns {Promise<boolean>}
+ */
 export function getWorkspaceFiles(): Promise<boolean> {
   files = [];
   return new Promise(resolve => {
-    workspace.findFiles('{**/*.scss,**/*.sass}', '').then(items => {
+    let patterns = getFilePatterns();
+    workspace.findFiles(patterns.include, patterns.exclude).then(items => {
       items.forEach(item => {
         parseFile(item);
       });
@@ -170,6 +205,12 @@ export function getWorkspaceFiles(): Promise<boolean> {
   });
 }
 
+/**
+ * Gets a list of variables from the workspace files
+ *
+ * @export
+ * @returns {CompletionItem[]}
+ */
 export function getVariables(): CompletionItem[] {
   let variables = [];
   files.forEach(file => {
@@ -179,7 +220,26 @@ export function getVariables(): CompletionItem[] {
 }
 
 /**
+ * Gets the file patterns for included/excluded files to parse
+ *
+ * @export
+ * @returns {{ include: string, exclude: string }}
+ */
+export function getFilePatterns(): { include: string, exclude: string } {
+  let pattern = { include: '', exclude: '' };
+  pattern.include = '**/*.{sass,scss}';
+
+  if (sassConfig.files && sassConfig.files.length > 0) {
+    pattern.include = '{**/' + sassConfig.files.join(',**/') + '}';
+  } else if (sassConfig.exclude && sassConfig.exclude.length > 0) {
+    pattern.exclude = '{**/' + sassConfig.exclude.join('**,**/') + '**}';
+  }
+  return pattern;
+}
+
+/**
  * Returns values for current property for completion list
+ *
  * @param {Object} cssSchema
  * @param {String} currentWord
  * @return {CompletionItem}
@@ -198,6 +258,26 @@ export function getValues(cssSchema, currentWord: string): CompletionItem[] {
 
     return completionItem;
   });
+}
+
+/**
+ * Loads the sass config file if there is one
+ *
+ * @export
+ * @param {string} [text=null]
+ * @returns
+ */
+export function loadSassConfig(text: string = null) {
+  if (workspace.rootPath) {
+    try {
+      if (text === null) {
+        sassConfig = require(workspace.rootPath + '/sassconfig.json');
+      } else {
+        sassConfig = JSON.parse(text);
+      }
+    } catch (e) { }
+  }
+  return sassConfig;
 }
 
 class SassCompletion implements CompletionItemProvider {
@@ -219,8 +299,8 @@ class SassCompletion implements CompletionItemProvider {
     } else {
       atRules = getAtRules(cssSchema, currentWord);
       properties = getProperties(cssSchema, currentWord, config.get('useSeparator', true));
-      variables = getVariables();
     }
+    variables = getVariables();
 
     const completions = [].concat(
       atRules,

@@ -3,7 +3,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import SassCompletion from './sassAutocomplete';
-import {getWorkspaceFiles, parseFile} from './sassAutocomplete';
+import {getWorkspaceFiles, parseFile, loadSassConfig, getFilePatterns} from './sassAutocomplete';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -13,6 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
     wordPattern: /(#?-?\d*\.\d\w*%?)|([$@#!.:]?[\w-?]+%?)|[$@#!.]/g
   });
 
+  loadSassConfig();
   getWorkspaceFiles();
   const sassCompletion = new SassCompletion();
   const sassCompletionRegister =
@@ -21,18 +22,22 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(sassCompletionRegister);
 
   // Watch for file changes
-  var fsw: vscode.FileSystemWatcher = vscode.workspace.createFileSystemWatcher('{**/*.sass,**/*.scss}');
+  var fsw: vscode.FileSystemWatcher = vscode.workspace.createFileSystemWatcher('{**/*.sass,**/*.scss,' + vscode.workspace.rootPath + '/sassconfig.json}');
   fsw.onDidChange(file => { fswParse(file); });
   fsw.onDidDelete(file => { fswParse(file, true); });
   fsw.onDidCreate(file => { fswParse(file); });
-
 }
 
 function fswParse(file: vscode.Uri, isDelete: boolean = false) {
   if (!isDelete) {
     vscode.workspace.openTextDocument(file).then(document => {
-      if (!['sass', 'scss'].indexOf(document.languageId)) return;
-      parseFile(file, isDelete);
+      if (!['sass', 'scss', 'json'].indexOf(document.languageId)) { return; }
+      if (document.languageId == 'json') {
+        loadSassConfig(document.getText());
+        getWorkspaceFiles();
+      } else {
+        parseFile(file, isDelete);
+      }
     });
   } else {
     parseFile(file, isDelete);
