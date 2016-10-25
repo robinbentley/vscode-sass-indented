@@ -122,11 +122,15 @@ export function getProperties(cssSchema, currentWord: string, useSeparator: bool
  * @returns
  */
 export function parseFile(fileUri: Uri, isDelete: boolean = false) {
-  let patterns = getFilePatterns();
-  let include = globToRegExp(patterns.include, { extended: true, flags: 'i' });
-  let exclude = globToRegExp(patterns.exclude, { extended: true, flags: 'i' });
-  if (!include.test(fileUri.path) || exclude.test(fileUri.path)) { return; }
-  if (!isDelete) {
+  if (isDelete) {
+    removeFile(fileUri);
+  } else {
+    // Test to see if it matches the pattern
+    let patterns = getFilePatterns();
+    let include = globToRegExp(patterns.include, { extended: true, flags: 'i' });
+    let exclude = globToRegExp(patterns.exclude, { extended: true, flags: 'i' });
+    if (!include.test(fileUri.path) || exclude.test(fileUri.path)) { return; }
+
     let content = fs.readFileSync(fileUri.fsPath).toString();
     // Variables pattern
     let pattern = /((\$.+?):(.+?);?)$/igm;
@@ -147,8 +151,6 @@ export function parseFile(fileUri: Uri, isDelete: boolean = false) {
       file.completion.push(completionItem);
     }
     addFile(fileUri, file);
-  } else {
-    removeFile(fileUri);
   }
 }
 
