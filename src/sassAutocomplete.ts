@@ -10,11 +10,18 @@ import {
   CompletionItem,
   CompletionItemKind,
   CompletionItemProvider,
+  DefinitionProvider,
   Position,
   Range,
   TextDocument,
   workspace,
-  Uri
+  Uri,
+  Location,
+  commands,
+  SymbolInformation,
+  WorkspaceSymbolProvider,
+  DocumentSymbolProvider,
+  SymbolKind
 } from 'vscode';
 
 import * as cssSchema from './schemas/cssSchema';
@@ -131,26 +138,34 @@ export function parseFile(fileUri: Uri, isDelete: boolean = false) {
     let exclude = globToRegExp(patterns.exclude, { extended: true, flags: 'i' });
     if (!include.test(fileUri.path) || exclude.test(fileUri.path)) { return; }
 
-    let content = fs.readFileSync(fileUri.fsPath).toString();
-    // Variables pattern
-    let pattern = /((\$.+?):(.+?);?)$/igm;
-    let match: string[] = [];
-    let file: File = new File;
-    file.file = fileUri;
-    // Create completion item for each matched variable
-    while ((match = pattern.exec(content)) !== null) {
-      let label = match[2].trim();
-      let value = match[3].trim();
-      let completionItem = new CompletionItem(label);
-      completionItem.detail = value;
-      if (/^(#|rgba?)/i.test(value)) {
-        completionItem.kind = CompletionItemKind.Color;
-      } else {
-        completionItem.kind = CompletionItemKind.Value;
+    workspace.openTextDocument(fileUri).then(document => {
+      let content = document.getText();
+      // Variables pattern
+      let pattern = /((\$.+?):(.+?);?)$/igm;
+      let match: string[] = [];
+      let file: File = new File;
+      file.file = fileUri;
+      let lastIndex = 0;
+      // Create completion item for each matched variable
+      while ((match = pattern.exec(content)) !== null) {
+        let label = match[2].trim();
+        let value = match[3].trim();
+        let completionItem = new CompletionItem(label);
+        completionItem.detail = value;
+        if (/^(#|rgba?)/i.test(value)) {
+          completionItem.kind = CompletionItemKind.Color;
+        } else {
+          completionItem.kind = CompletionItemKind.Value;
+        }
+        file.completions.push(new Completion(completionItem, new Range(
+          document.positionAt(pattern.lastIndex - match[0].length),
+          document.positionAt(pattern.lastIndex - match[0].length + label.length))
+        ));
+        lastIndex = pattern.lastIndex;
+        // file.completion.push(completionItem);
       }
-      file.completion.push(completionItem);
-    }
-    addFile(fileUri, file);
+      addFile(fileUri, file);
+    });
   }
 }
 
@@ -165,7 +180,7 @@ export function addFile(fileUri: Uri, file: File) {
   let newItem: boolean = true;
   for (let i = 0; i < files.length; i++) {
     if (files[i].file.fsPath == fileUri.fsPath) {
-      files[i].completion = file.completion;
+      // files[i].completions = file.completion;
       newItem = false;
       break;
     }
@@ -200,7 +215,7 @@ export function getWorkspaceFiles(): Promise<boolean> {
     let patterns = getFilePatterns();
     workspace.findFiles(patterns.include, patterns.exclude).then(items => {
       items.forEach(item => {
-        parseFile(item);
+        parseFile(item, false);
       });
       resolve(true);
     });
@@ -214,9 +229,9 @@ export function getWorkspaceFiles(): Promise<boolean> {
  * @returns {CompletionItem[]}
  */
 export function getVariables(): CompletionItem[] {
-  let variables = [];
+  let variables: CompletionItem[] = [];
   files.forEach(file => {
-    file.completion.forEach(comp => { variables.push(comp); });
+    file.completions.forEach(comp => { variables.push(comp.item); });
   });
   return variables;
 }
@@ -282,8 +297,8 @@ export function loadSassConfig(text: string = null) {
   return sassConfig;
 }
 
-class SassCompletion implements CompletionItemProvider {
-  provideCompletionItems(document: TextDocument, position: Position, token: CancellationToken): CompletionItem[] {
+export class SassCompletion implements CompletionItemProvider {
+  public provideCompletionItems(document: TextDocument, position: Position, token: CancellationToken): CompletionItem[] {
     const start = new Position(position.line, 0);
     const range = new Range(start, position);
     const currentWord = document.getText(range).trim();
@@ -316,9 +331,51 @@ class SassCompletion implements CompletionItemProvider {
   }
 }
 
+export class SassDefinitionProvider implements DefinitionProvider {
+  public provideDefinition(document: TextDocument, position: Position, token: CancellationToken): Thenable<Location> {
+    return new Promise((resolve, reject) => {
+      let wordRange: Range = document.getWordRangeAtPosition(position);
+      let word: string = document.getText(wordRange);
+      commands.executeCommand('vscode.executeWorkspaceSymbolProvider', word).then((items: Array<SymbolInformation>) => {
+        var locations: Location[] = [];
+        items.forEach(item => {
+          locations.push(item.location);
+        });
+        resolve(locations);
+      });
+    });
+  }
+}
+
+export class SassWorkspaceSymbolProvider implements WorkspaceSymbolProvider {
+  public provideWorkspaceSymbols(query: string, token: CancellationToken): Thenable<SymbolInformation[]> {
+    return new Promise((resolve, reject) => {
+      let results: SymbolInformation[] = [];
+      files.forEach(file => {
+        file.completions.forEach(item => {
+          if (item.item.label == query) {
+            results.push(new SymbolInformation(query, SymbolKind.Field, item.range, file.file));
+          }
+        });
+      });
+      resolve(results);
+    });
+  }
+}
+
 class File {
-  completion: CompletionItem[] = [];
-  file: Uri;
+  public completions: Completion[] = [];
+  public file: Uri;
+}
+
+class Completion {
+  public item: CompletionItem;
+  public range: Range = new Range(new Position(0, 0), new Position(0, 0));
+
+  public constructor(item: CompletionItem, range: Range) {
+    this.item = item;
+    this.range = range;
+  }
 }
 
 export default SassCompletion;

@@ -3,6 +3,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import SassCompletion from './sassAutocomplete';
+import {SassDefinitionProvider, SassWorkspaceSymbolProvider} from './sassAutocomplete';
 import {getWorkspaceFiles, parseFile, loadSassConfig, getFilePatterns} from './sassAutocomplete';
 
 // this method is called when your extension is activated
@@ -15,11 +16,13 @@ export function activate(context: vscode.ExtensionContext) {
 
   loadSassConfig();
   getWorkspaceFiles();
-  const sassCompletion = new SassCompletion();
-  const sassCompletionRegister =
-    vscode.languages.registerCompletionItemProvider(docFilter, sassCompletion, '\\.', '@', '$');
+  const sassCompletionRegister = vscode.languages.registerCompletionItemProvider(docFilter, new SassCompletion, '\\.', '@', '$');
+  const sassWorkspaceSymbolRegister = vscode.languages.registerWorkspaceSymbolProvider(new SassWorkspaceSymbolProvider);
+  const sassDefinitionRegister = vscode.languages.registerDefinitionProvider(docFilter, new SassDefinitionProvider);
 
   context.subscriptions.push(sassCompletionRegister);
+  context.subscriptions.push(sassWorkspaceSymbolRegister);
+  context.subscriptions.push(sassDefinitionRegister);
 
   // Watch for file changes
   var fsw: vscode.FileSystemWatcher = vscode.workspace.createFileSystemWatcher('{**/*.sass,**/*.scss,' + vscode.workspace.rootPath + '/sassconfig.json}');
