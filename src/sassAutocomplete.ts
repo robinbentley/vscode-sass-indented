@@ -245,6 +245,7 @@ export function getVariables(): CompletionItem[] {
 export function getFilePatterns(): { include: string, exclude: string } {
   let pattern = { include: '', exclude: '' };
   pattern.include = '**/*.{sass,scss}';
+  pattern.exclude = '**/{node_modules,bower_components}/**';
 
   if (sassConfig.files && sassConfig.files.length > 0) {
     pattern.include = '{**/' + sassConfig.files.join(',**/') + '}';
