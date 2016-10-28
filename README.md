@@ -61,5 +61,11 @@ Property/Value Autocompletion - [Stanislav Sysoev (@d4rkr00t)](https://github.co
 Syntax highlighing - [https://github.com/P233/Syntax-highlighting-for-Sass](https://github.com/P233/Syntax-highlighting-for-Sass)   
 Sass seal logo - [http://sass-lang.com/styleguide/brand](http://sass-lang.com/styleguide/brand)   
 
+## Changelog
+1.2.0 - Add global variable autocompletion   
+1.1.0 - Rename sass-intended -> sass   
+1.0.0 - Add property/value autocompletion   
+0.1.0 - Initial Release   
+
 ## License
 [MIT - https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
