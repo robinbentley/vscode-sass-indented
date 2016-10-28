@@ -2,7 +2,7 @@
     "name": "sass-indented",
     "displayName": "Sass",
     "description": "Indented Sass syntax highlighting, autocomplete & snippets",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "icon": "images/sass-logo-seal.svg",
     "publisher": "robinbentley",
     "repository": {
@@ -14,7 +14,9 @@
         "vscode": "^1.4.0"
     },
     "activationEvents": [
-        "onLanguage:sass"
+        "onLanguage:sass",
+        "onLanguage:scss",
+        "workspaceContains:sassconfig.json"
     ],
     "main": "./out/src/extension",
     "categories": [
@@ -31,6 +33,7 @@
                 ],
                 "extensions": [
                     ".sass",
+                    ".scss",
                     ".sass.erb"
                 ],
                 "configuration": "./sass.configuration.json"
@@ -58,5 +61,8 @@
     "devDependencies": {
         "typescript": "^1.8.5",
         "vscode": "^0.11.0"
+    },
+    "dependencies": {
+        "glob-to-regexp": "^0.3.0"
     }
 }
