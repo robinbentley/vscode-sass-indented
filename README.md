@@ -1,7 +1,7 @@
 # Indented Sass syntax highlighting, autocomplete & snippets for VSCode
 VSCode only has built in support for SCSS syntax so I have put this together for people who use the indented syntax.
 
-**v1.2.0 adds [Global Variable Autocompletion](#global-variable-completion)** please read this section for details
+**v1.2.0 adds [Global Variable Autocompletion](#global-variable-completion) please read this section for details**
 
 ![Highlighting Example](https://raw.githubusercontent.com/robinbentley/vscode-sass-indented/master/images/screenshot.png)
 
