@@ -159,6 +159,7 @@ export function parseFile(fileUri: Uri, isDelete: boolean = false) {
         } else {
           completionItem.kind = CompletionItemKind.Value;
           completionItem.detail = value;
+          completionItem.label = label;
         }
         file.completions.push(new Completion(completionItem, new Range(
           document.positionAt(pattern.lastIndex - match[0].length),
@@ -246,7 +247,7 @@ export function getVariables(): CompletionItem[] {
  * @returns {{ include: string, exclude: string }}
  */
 export function getFilePatterns(): { include: string, exclude: string } {
-  let pattern = { include: '**/*.{sass,scss}', exclude: '' };
+  let pattern = { include: '**/*.{sass,scss}', exclude: '**/{node_modules,bower_components}/**' };
 
   if (sassConfig.files && sassConfig.files.length > 0) {
     pattern.include = '{' + sassConfig.files.join(',') + '}';
