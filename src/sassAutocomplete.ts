@@ -150,12 +150,15 @@ export function parseFile(fileUri: Uri, isDelete: boolean = false) {
       while ((match = pattern.exec(content)) !== null) {
         let label = match[2].trim();
         let value = match[3].trim();
-        let completionItem = new CompletionItem(label);
-        completionItem.detail = value;
+        let completionItem = new CompletionItem(value);
         if (/^(#|rgba?)/i.test(value)) {
           completionItem.kind = CompletionItemKind.Color;
+          completionItem.filterText = label;
+          completionItem.detail = label;
+          completionItem.insertText = label;
         } else {
           completionItem.kind = CompletionItemKind.Value;
+          completionItem.detail = value;
         }
         file.completions.push(new Completion(completionItem, new Range(
           document.positionAt(pattern.lastIndex - match[0].length),
@@ -243,13 +246,12 @@ export function getVariables(): CompletionItem[] {
  * @returns {{ include: string, exclude: string }}
  */
 export function getFilePatterns(): { include: string, exclude: string } {
-  let pattern = { include: '', exclude: '' };
-  pattern.include = '**/*.{sass,scss}';
+  let pattern = { include: '**/*.{sass,scss}', exclude: '' };
 
   if (sassConfig.files && sassConfig.files.length > 0) {
-    pattern.include = '{**/' + sassConfig.files.join(',**/') + '}';
+    pattern.include = '{' + sassConfig.files.join(',') + '}';
   } else if (sassConfig.exclude && sassConfig.exclude.length > 0) {
-    pattern.exclude = '{**/' + sassConfig.exclude.join('**,**/') + '**}';
+    pattern.exclude = '{' + sassConfig.exclude.join(',') + '}';
   }
   return pattern;
 }
