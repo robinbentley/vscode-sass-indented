@@ -13,7 +13,7 @@ ext install sass-indented
 
 
 ## Global Variable Autocompletion
-With thanks to [Ryan Naddy (@TheColorRed)](https://github.com/TheColorRed) auto completion for variables will now be available across your whole project including `ctrl-click` & `F12` to Go to Definition.
+With thanks to [Ryan Naddy (@TheColorRed)](https://github.com/TheColorRed) auto completion for variables will now be available across your whole project including `ctrl-click` & `F12` to Go to Definition and color preview if the variable is a valid color format.
 
 A `sassconfig.json` file can be added to the root of the project to control what's available for autocompletion. The config file **is not required** but if you notice completions you don't want or need there is the option to fine tune for that project. By default `node_modules` and `bower_components` are excluded.
 
@@ -62,6 +62,7 @@ Syntax highlighing - [https://github.com/P233/Syntax-highlighting-for-Sass](http
 Sass seal logo - [http://sass-lang.com/styleguide/brand](http://sass-lang.com/styleguide/brand)   
 
 ## Changelog
+1.2.1 - Add color preview to variable completion   
 1.2.0 - Add global variable autocompletion   
 1.1.0 - Rename sass-intended -> sass   
 1.0.0 - Add property/value autocompletion   
