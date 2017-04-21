@@ -27,6 +27,10 @@
 					<key>include</key>
 					<string>#comment-tag</string>
 				</dict>
+        	<dict>
+					<key>include</key>
+					<string>#comment-param</string>
+				</dict>
 			</array>
 		</dict>
 		<dict>
@@ -43,6 +47,14 @@
 					<string>#comment-tag</string>
 				</dict>
 			</array>
+      <key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.at-rule.css.sass</string>
+				</dict>
+			</dict>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -478,6 +490,13 @@
 			<string>(?=}})</string>
 			<key>name</key>
 			<string>comment.tag.sass</string>
+		</dict>
+    <key>comment-param</key>
+		<dict>
+			<key>match</key>
+			<string>\@(\w+)</string>
+			<key>name</key>
+			<string>keyword.control.at-rule.css.sass</string>
 		</dict>
 		<key>curly-brackets</key>
 		<dict>
