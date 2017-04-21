@@ -47,14 +47,6 @@
 					<string>#comment-tag</string>
 				</dict>
 			</array>
-      <key>captures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.control.at-rule.css.sass</string>
-				</dict>
-			</dict>
 		</dict>
 		<dict>
 			<key>include</key>
