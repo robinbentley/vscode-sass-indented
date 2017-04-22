@@ -1,8 +1,6 @@
 # Indented Sass syntax highlighting, autocomplete & snippets for VSCode
 VSCode only has built in support for SCSS syntax so I have put this together for people who use the indented syntax.
 
-**v1.3.0 - due to reports of perfomance issues global variable detection and autocompletion has been disabled. Once these issues have been investigated and resolved it may return**
-
 ![Highlighting Example](https://raw.githubusercontent.com/robinbentley/vscode-sass-indented/master/images/screenshot.png)
 
 ## Installing
@@ -27,13 +25,13 @@ Snippets have been reduced to a few time savers.
 ## Contributing
 If anyone feels that there is something missing or can suggest improvements please [open a new issue](https://github.com/robinbentley/vscode-sass-indented/issues) or better yet send a pull request! Clone this repo and follow the instructions for running/debugging extensions locally [here](https://code.visualstudio.com/docs/extensions/overview)
 
-## Credits
-Global Variable Autocompletion - [Ryan Naddy (@TheColorRed)](https://github.com/TheColorRed)   
+## Credits 
 Property/Value Autocompletion - [Stanislav Sysoev (@d4rkr00t)](https://github.com/d4rkr00t) for his work on [language-stylus](https://github.com/d4rkr00t/language-stylus) extension   
 Syntax highlighing - [https://github.com/P233/Syntax-highlighting-for-Sass](https://github.com/P233/Syntax-highlighting-for-Sass)   
 Sass seal logo - [http://sass-lang.com/styleguide/brand](http://sass-lang.com/styleguide/brand)   
 
 ## Changelog
+1.4.0 - Add comment param highlighing. Fix adjoined id highlighing    
 1.3.1 - Remove association with `.scss` files   
 1.3.0 - Revert to 1.1.0 functionality whilst performance issues are resolved   
 1.2.1 - Add color preview to variable completion   
