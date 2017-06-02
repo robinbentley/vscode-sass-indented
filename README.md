@@ -31,7 +31,7 @@ Syntax highlighing - [https://github.com/P233/Syntax-highlighting-for-Sass](http
 Sass seal logo - [http://sass-lang.com/styleguide/brand](http://sass-lang.com/styleguide/brand)   
 
 ## Changelog
-1.4.0 - Add comment param highlighing. Fix adjoined id highlighting   
+1.4.0 - Add comment param highlighting. Fix adjoined id highlighting   
 1.3.1 - Remove association with `.scss` files   
 1.3.0 - Revert to 1.1.0 functionality whilst performance issues are resolved   
 1.2.1 - Add color preview to variable completion   
