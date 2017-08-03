@@ -3,7 +3,7 @@
     "displayName": "Sass",
     "description": "Indented Sass syntax highlighting, autocomplete & snippets",
     "version": "1.4.1",
-    "icon": "images/sass-logo-seal.svg",
+    "icon": "images/sass-logo-seal.png",
     "publisher": "robinbentley",
     "repository": {
         "type": "git",
