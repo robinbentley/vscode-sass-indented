@@ -31,14 +31,7 @@ Syntax highlighing - [https://github.com/P233/Syntax-highlighting-for-Sass](http
 Sass seal logo - [http://sass-lang.com/styleguide/brand](http://sass-lang.com/styleguide/brand)   
 
 ## Changelog
-1.4.0 - Add comment param highlighting. Fix adjoined id highlighting   
-1.3.1 - Remove association with `.scss` files   
-1.3.0 - Revert to 1.1.0 functionality whilst performance issues are resolved   
-1.2.1 - Add color preview to variable completion   
-1.2.0 - Add global variable autocompletion   
-1.1.0 - Rename sass-intended -> sass   
-1.0.0 - Add property/value autocompletion   
-0.1.0 - Initial Release   
+The full changelog is available here: [changelog](CHANGELOG.md). 
 
 ## License
 [MIT - https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
