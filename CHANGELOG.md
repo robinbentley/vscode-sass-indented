@@ -2,6 +2,7 @@
 
 | Version | Date | Changelog|
 | ------- | -------- | ------ |
+| 1.4.2 | 13.09.2017 | Separate CHANGELOG. Add PNG icon. Update snippet tabstops
 | 1.4.1 | 22.03.2017 | Add comment param highlighting. Fix adjoined id highlighting |
 | 1.4.0 | 21.03.2017 | Add comment param highlighting. Fix adjoined id highlighting |
 | 1.3.1 | 15.03.2017 | Remove association with `.scss` files |
