@@ -1,6 +1,6 @@
-[![](https://vsmarketplacebadge.apphb.com/version/robinbentley.sass-indented.svg)](https://marketplace.visualstudio.com/items?itemName=robinbentley.sass-indented)
-[![](https://vsmarketplacebadge.apphb.com/installs/robinbentley.sass-indented.svg)](https://marketplace.visualstudio.com/items?itemName=robinbentley.sass-indented)
-[![](https://vsmarketplacebadge.apphb.com/rating/robinbentley.sass-indented.svg)](https://marketplace.visualstudio.com/items?itemName=robinbentley.sass-indented)
+[![](https://vsmarketplacebadge.apphb.com/version-short/robinbentley.sass-indented.svg)](https://marketplace.visualstudio.com/items?itemName=robinbentley.sass-indented)
+[![](https://vsmarketplacebadge.apphb.com/installs-short/robinbentley.sass-indented.svg)](https://marketplace.visualstudio.com/items?itemName=robinbentley.sass-indented)
+[![](https://vsmarketplacebadge.apphb.com/rating-short/robinbentley.sass-indented.svg)](https://marketplace.visualstudio.com/items?itemName=robinbentley.sass-indented)
 
 # Indented Sass syntax highlighting, autocomplete & snippets for VSCode
 VSCode only has built in support for SCSS syntax so I have put this together for people who use the indented syntax.
