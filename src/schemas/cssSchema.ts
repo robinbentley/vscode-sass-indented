@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 // file generated from css-schema.xml using css-exclude_generate_browserjs.js
-exports.data = {
+export const data = {
 	"css": {
 		"atdirectives": [
 			{
@@ -11393,7 +11393,7 @@ exports.data = {
 		]
 	}
 };
-	exports.descriptions = {
+export const descriptions = {
 	"100": "Thin",
 	"200": "Extra Light (Ultra Light)",
 	"300": "Light",
