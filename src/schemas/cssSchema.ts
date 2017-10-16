@@ -669,7 +669,7 @@ export const data = {
         "browsers": "E13,C,O15,S6"
       },
       {
-        "name": "::-webkit-ouer-spin-button",
+        "name": "::-webkit-outer-spin-button",
         "browsers": "C,O,S6"
       },
       {
@@ -831,6 +831,141 @@ export const data = {
             "desc": "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
           }
         ]
+      },
+      {
+        "name": "justify-items",
+        "desc": "Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi",
+        "browsers": "FF45",
+        "restriction": "enum",
+        "values": [
+          {
+            "name": "auto"
+          },
+          {
+            "name": "normal"
+          },
+          {
+            "name": "end"
+          },
+          {
+            "name": "start"
+          },
+          {
+            "name": "flex-end",
+            "desc": "\"Flex items are packed toward the end of the line.\""
+          },
+          {
+            "name": "flex-start",
+            "desc": "\"Flex items are packed toward the start of the line.\""
+          },
+          {
+            "name": "self-end"
+          },
+          {
+            "name": "self-start"
+          },
+          {
+            "name": "center",
+            "desc": "The items are packed flush to each other toward the center of the of the alignment container."
+          },
+          {
+            "name": "left"
+          },
+          {
+            "name": "right"
+          },
+          {
+            "name": "baseline"
+          },
+          {
+            "name": "first baseline"
+          },
+          {
+            "name": "last baseline"
+          },
+          {
+            "name": "stretch",
+            "desc": "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
+          },
+          {
+            "name": "save"
+          },
+          {
+            "name": "unsave"
+          },
+          {
+            "name": "legacy"
+          }
+        ]
+      },
+      {
+        "name": "justify-self",
+        "desc": "Defines the way of justifying a box inside its container along the appropriate axis.",
+        "browsers": "FF45",
+        "restriction": "enum",
+        "values": [
+          {
+            "name": "auto"
+          },
+          {
+            "name": "normal"
+          },
+          {
+            "name": "end"
+          },
+          {
+            "name": "start"
+          },
+          {
+            "name": "flex-end",
+            "desc": "\"Flex items are packed toward the end of the line.\""
+          },
+          {
+            "name": "flex-start",
+            "desc": "\"Flex items are packed toward the start of the line.\""
+          },
+          {
+            "name": "self-end"
+          },
+          {
+            "name": "self-start"
+          },
+          {
+            "name": "center",
+            "desc": "The items are packed flush to each other toward the center of the of the alignment container."
+          },
+          {
+            "name": "left"
+          },
+          {
+            "name": "right"
+          },
+          {
+            "name": "baseline"
+          },
+          {
+            "name": "first baseline"
+          },
+          {
+            "name": "last baseline"
+          },
+          {
+            "name": "stretch",
+            "desc": "If the cross size property of the flex item computes to auto, and neither of the cross-axis margins are auto, the flex item is stretched."
+          },
+          {
+            "name": "save"
+          },
+          {
+            "name": "unsave"
+          }
+        ]
+      },
+      {
+        "name": "justify-items",
+        "desc": "Defines the default justify-self for all items of the box, given them the default way of justifying each box along the appropriate axi",
+        "browsers": "FF45",
+        "restriction": "enum"
       },
       {
         "name": "align-self",
@@ -1783,6 +1918,18 @@ export const data = {
         ]
       },
       {
+        "name": "caret-color",
+        "desc": "Controls the color of the text insertion indicator.",
+        "browsers": "C60,FF55,O46",
+        "restriction": "color, enum",
+        "values": [
+          {
+            "name": "auto",
+            "desc": "The user agent selects an appropriate color for the caret. This is generally currentcolor, but the user agent may choose a different color to ensure good visibility and contrast with the surrounding content, taking into account the value of currentcolor, the background, shadows, and other factors."
+          }
+        ]
+      },
+      {
         "name": "clear",
         "desc": "Indicates which sides of an element's box(es) may not be adjacent to an earlier floating box. The 'clear' property does not consider floats inside the element itself or in other block formatting contexts.",
         "restriction": "enum",
@@ -1972,6 +2119,39 @@ export const data = {
           {
             "name": "auto",
             "desc": "The width depends on the values of other properties."
+          }
+        ]
+      },
+      {
+        "name": "contain",
+        "desc": "Indicates that an element and its contents are, as much as possible, independent of the rest of the document tree.",
+        "browsers": "C52,O40",
+        "restriction": "enum",
+        "values": [
+          {
+            "name": "none",
+            "desc": "Indicates that the property has no effect."
+          },
+          {
+            "name": "strict",
+            "desc": "Turns on all forms of containment for the element."
+          },
+          {
+            "name": "content",
+            "desc": "All containment rules except size are applied to the element."
+          },
+          {
+            "name": "size"
+          },
+          {
+            "name": "layout"
+          },
+          {
+            "name": "style",
+            "desc": "Turns on style containment for the element."
+          },
+          {
+            "name": "paint"
           }
         ]
       },
@@ -2205,12 +2385,25 @@ export const data = {
             "name": "block"
           },
           {
+            "name": "contents",
+            "desc": "The element itself does not generate any boxes, but its children and pseudo-elements still generate boxes as normal.",
+            "browsers": "FF37"
+          },
+          {
             "name": "flex",
             "browsers": "E,C29,FF22,IE11,O12.1,S9"
           },
           {
             "name": "flexbox",
             "browsers": "O12.1"
+          },
+          {
+            "name": "flow-root",
+            "browsers": "C58,FF53,O45"
+          },
+          {
+            "name": "grid",
+            "browsers": "FF52,C57,S10.1,O44"
           },
           {
             "name": "inline",
@@ -2491,6 +2684,7 @@ export const data = {
           },
           {
             "name": "content",
+            "desc": "Indicates automatic sizing, based on the flex item’s content.",
             "browsers": "E,IE11"
           },
           {
@@ -2511,6 +2705,7 @@ export const data = {
           },
           {
             "name": "content",
+            "desc": "Indicates automatic sizing, based on the flex item’s content.",
             "browsers": "E,IE11"
           }
         ]
@@ -2529,7 +2724,8 @@ export const data = {
             "name": "column-reverse"
           },
           {
-            "name": "row"
+            "name": "row",
+            "desc": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
           },
           {
             "name": "row-reverse"
@@ -2554,7 +2750,8 @@ export const data = {
             "desc": "The flex container is single-line."
           },
           {
-            "name": "row"
+            "name": "row",
+            "desc": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
           },
           {
             "name": "row-reverse"
@@ -2604,6 +2801,14 @@ export const data = {
         "desc": "Specifies how a box should be floated. It may be set for any element, but only applies to elements that generate boxes that are not absolutely positioned.",
         "restriction": "enum",
         "values": [
+          {
+            "name": "inline-end",
+            "browsers": "FF55"
+          },
+          {
+            "name": "inline-start",
+            "browsers": "FF55"
+          },
           {
             "name": "left",
             "desc": "The element generates a block box that is floated to the left. Content flows on the right side of the box, starting at the top (subject to the 'clear' property)."
@@ -2740,6 +2945,9 @@ export const data = {
         "desc": "Specifies a prioritized list of font family names or generic family names. A user agent iterates through the list of family names until it matches an available font that contains a glyph for the character to be rendered.",
         "restriction": "font",
         "values": [
+          {
+            "name": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+          },
           {
             "name": "Arial, Helvetica, sans-serif"
           },
@@ -3324,7 +3532,8 @@ export const data = {
             "desc": "Disallow all synthetic faces."
           },
           {
-            "name": "style"
+            "name": "style",
+            "desc": "Allow synthetic italic faces."
           },
           {
             "name": "weight"
@@ -3619,6 +3828,311 @@ export const data = {
         ]
       },
       {
+        "name": "grid-area",
+        "desc": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement. Shorthand for 'grid-row-start', 'grid-column-start', 'grid-row-end', and 'grid-column-end'.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "identifier, integer",
+        "values": [
+          {
+            "name": "auto",
+            "desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+          },
+          {
+            "name": "span"
+          }
+        ]
+      },
+      {
+        "name": "grid-auto-columns",
+        "desc": "Specifies the size of implicitly created columns.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "length, percentage",
+        "values": [
+          {
+            "name": "min-content",
+            "desc": "Represents the largest min-content contribution of the grid items occupying the grid track."
+          },
+          {
+            "name": "max-content",
+            "desc": "Represents the largest max-content contribution of the grid items occupying the grid track."
+          },
+          {
+            "name": "auto",
+            "desc": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
+          },
+          {
+            "name": "minmax()"
+          }
+        ]
+      },
+      {
+        "name": "grid-auto-flow",
+        "desc": "Controls how the auto-placement algorithm works, specifying exactly how auto-placed items get flowed into the grid.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "enum",
+        "values": [
+          {
+            "name": "row",
+            "desc": "The auto-placement algorithm places items by filling each row in turn, adding new rows as necessary."
+          },
+          {
+            "name": "column",
+            "desc": "The auto-placement algorithm places items by filling each column in turn, adding new columns as necessary."
+          },
+          {
+            "name": "dense"
+          }
+        ]
+      },
+      {
+        "name": "grid-auto-rows",
+        "desc": "Specifies the size of implicitly created rows.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "length, percentage",
+        "values": [
+          {
+            "name": "min-content",
+            "desc": "Represents the largest min-content contribution of the grid items occupying the grid track."
+          },
+          {
+            "name": "max-content",
+            "desc": "Represents the largest max-content contribution of the grid items occupying the grid track."
+          },
+          {
+            "name": "auto",
+            "desc": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
+          },
+          {
+            "name": "minmax()"
+          }
+        ]
+      },
+      {
+        "name": "grid-column",
+        "desc": "Shorthand for 'grid-column-start' and 'grid-column-end'.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "identifier, integer, enum",
+        "values": [
+          {
+            "name": "auto",
+            "desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+          },
+          {
+            "name": "span"
+          }
+        ]
+      },
+      {
+        "name": "grid-column-end",
+        "desc": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "identifier, integer, enum",
+        "values": [
+          {
+            "name": "auto",
+            "desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+          },
+          {
+            "name": "span"
+          }
+        ]
+      },
+      {
+        "name": "grid-column-gap",
+        "desc": "Specifies the gutters between grid columns.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "length"
+      },
+      {
+        "name": "grid-column-start",
+        "desc": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "identifier, integer, enum",
+        "values": [
+          {
+            "name": "auto",
+            "desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+          },
+          {
+            "name": "span"
+          }
+        ]
+      },
+      {
+        "name": "grid-gap",
+        "desc": "Shorthand that specifies the gutters between grid columns and grid rows in one declaration.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "length"
+      },
+      {
+        "name": "grid-row",
+        "desc": "Shorthand for 'grid-row-start' and 'grid-row-end'.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "identifier, integer, enum",
+        "values": [
+          {
+            "name": "auto",
+            "desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+          },
+          {
+            "name": "span"
+          }
+        ]
+      },
+      {
+        "name": "grid-row-end",
+        "desc": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "identifier, integer, enum",
+        "values": [
+          {
+            "name": "auto",
+            "desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+          },
+          {
+            "name": "span"
+          }
+        ]
+      },
+      {
+        "name": "grid-row-gap",
+        "desc": "Specifies the gutters between grid rows.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "length"
+      },
+      {
+        "name": "grid-row-start",
+        "desc": "Determine a grid item’s size and location within the grid by contributing a line, a span, or nothing (automatic) to its grid placement.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "identifier, integer, enum",
+        "values": [
+          {
+            "name": "auto",
+            "desc": "The property contributes nothing to the grid item’s placement, indicating auto-placement, an automatic span, or a default span of one."
+          },
+          {
+            "name": "span"
+          }
+        ]
+      },
+      {
+        "name": "grid-template",
+        "desc": "Shorthand for setting grid-template-columns, grid-template-rows, and grid-template-areas in a single declaration.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "identifier, length, percentage, string, enum",
+        "values": [
+          {
+            "name": "none",
+            "desc": "Sets all three properties to their initial values."
+          },
+          {
+            "name": "min-content",
+            "desc": "Represents the largest min-content contribution of the grid items occupying the grid track."
+          },
+          {
+            "name": "max-content",
+            "desc": "Represents the largest max-content contribution of the grid items occupying the grid track."
+          },
+          {
+            "name": "auto",
+            "desc": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
+          },
+          {
+            "name": "subgrid",
+            "desc": "Sets 'grid-template-rows' and 'grid-template-columns' to 'subgrid', and 'grid-template-areas' to its initial value."
+          },
+          {
+            "name": "minmax()"
+          },
+          {
+            "name": "repeat()",
+            "desc": "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
+          }
+        ]
+      },
+      {
+        "name": "grid-template-areas",
+        "desc": "Specifies named grid areas, which are not associated with any particular grid item, but can be referenced from the grid-placement properties.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "string",
+        "values": [
+          {
+            "name": "none",
+            "desc": "The grid container doesn’t define any named grid areas."
+          }
+        ]
+      },
+      {
+        "name": "grid-template-columns",
+        "desc": "specifies, as a space-separated track list, the line names and track sizing functions of the grid.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "identifier, length, percentage, enum",
+        "values": [
+          {
+            "name": "none",
+            "desc": "There is no explicit grid; any rows/columns will be implicitly generated."
+          },
+          {
+            "name": "min-content",
+            "desc": "Represents the largest min-content contribution of the grid items occupying the grid track."
+          },
+          {
+            "name": "max-content",
+            "desc": "Represents the largest max-content contribution of the grid items occupying the grid track."
+          },
+          {
+            "name": "auto",
+            "desc": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
+          },
+          {
+            "name": "subgrid",
+            "desc": "Indicates that the grid will align to its parent grid in that axis."
+          },
+          {
+            "name": "minmax()"
+          },
+          {
+            "name": "repeat()",
+            "desc": "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
+          }
+        ]
+      },
+      {
+        "name": "grid-template-rows",
+        "desc": "specifies, as a space-separated track list, the line names and track sizing functions of the grid.",
+        "browsers": "FF52,C57,S10.1,O44",
+        "restriction": "identifier, length, percentage, string, enum",
+        "values": [
+          {
+            "name": "none",
+            "desc": "There is no explicit grid; any rows/columns will be implicitly generated."
+          },
+          {
+            "name": "min-content",
+            "desc": "Represents the largest min-content contribution of the grid items occupying the grid track."
+          },
+          {
+            "name": "max-content",
+            "desc": "Represents the largest max-content contribution of the grid items occupying the grid track."
+          },
+          {
+            "name": "auto",
+            "desc": "As a maximum, identical to 'max-content'. As a minimum, represents the largest minimum size (as specified by min-width/min-height) of the grid items occupying the grid track."
+          },
+          {
+            "name": "subgrid",
+            "desc": "Indicates that the grid will align to its parent grid in that axis."
+          },
+          {
+            "name": "minmax()"
+          },
+          {
+            "name": "repeat()",
+            "desc": "Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern to be written in a more compact form."
+          }
+        ]
+      },
+      {
         "name": "height",
         "desc": "Specifies the height of the content area, padding area or border area (depending on 'box-sizing') of certain boxes.",
         "restriction": "length, percentage",
@@ -3633,11 +4147,32 @@ export const data = {
           },
           {
             "name": "max-content",
+            "desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           },
           {
             "name": "min-content",
+            "desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
+          }
+        ]
+      },
+      {
+        "name": "hyphens",
+        "desc": "Controls whether hyphenation is allowed to create more break opportunities within a line of text.",
+        "browsers": "C55,FF43,O44",
+        "restriction": "enum",
+        "values": [
+          {
+            "name": "auto",
+            "desc": "Conditional hyphenation characters inside a word, if present, take priority over automatic resources when determining hyphenation points within the word."
+          },
+          {
+            "name": "manual"
+          },
+          {
+            "name": "none",
+            "desc": "Words are not broken at line breaks, even if characters inside the word suggest line break points."
           }
         ]
       },
@@ -3976,7 +4511,7 @@ export const data = {
       },
       {
         "name": "margin",
-        "desc": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+        "desc": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits.",
         "restriction": "length, percentage",
         "values": [
           {
@@ -4008,7 +4543,7 @@ export const data = {
       },
       {
         "name": "margin-bottom",
-        "desc": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+        "desc": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
         "restriction": "length, percentage",
         "values": [
           {
@@ -4040,7 +4575,7 @@ export const data = {
       },
       {
         "name": "margin-left",
-        "desc": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+        "desc": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
         "restriction": "length, percentage",
         "values": [
           {
@@ -4050,7 +4585,7 @@ export const data = {
       },
       {
         "name": "margin-right",
-        "desc": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+        "desc": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
         "restriction": "length, percentage",
         "values": [
           {
@@ -4060,7 +4595,7 @@ export const data = {
       },
       {
         "name": "margin-top",
-        "desc": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. The value may not be negative.",
+        "desc": "Shorthand property to set values the thickness of the margin area. If left is omitted, it is the same as right. If bottom is omitted it is the same as top, if right is omitted it is the same as top. Negative values for margin properties are allowed, but there may be implementation-specific limits..",
         "restriction": "length, percentage",
         "values": [
           {
@@ -4170,10 +4705,12 @@ export const data = {
           },
           {
             "name": "max-content",
+            "desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           },
           {
             "name": "min-content",
+            "desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           }
         ]
@@ -4206,10 +4743,12 @@ export const data = {
           },
           {
             "name": "max-content",
+            "desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           },
           {
             "name": "min-content",
+            "desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           }
         ]
@@ -4236,10 +4775,12 @@ export const data = {
           },
           {
             "name": "max-content",
+            "desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           },
           {
             "name": "min-content",
+            "desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           }
         ]
@@ -4266,10 +4807,12 @@ export const data = {
           },
           {
             "name": "max-content",
+            "desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           },
           {
             "name": "min-content",
+            "desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           }
         ]
@@ -5601,7 +6144,8 @@ export const data = {
             "name": "column-reverse"
           },
           {
-            "name": "row"
+            "name": "row",
+            "desc": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
           },
           {
             "name": "row-reverse"
@@ -5626,7 +6170,8 @@ export const data = {
             "desc": "The flex container is single-line."
           },
           {
-            "name": "row"
+            "name": "row",
+            "desc": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode."
           },
           {
             "name": "wrap",
@@ -7798,7 +8343,7 @@ export const data = {
           },
           {
             "name": "sticky",
-            "browsers": "FF32"
+            "browsers": "C56,FF32"
           },
           {
             "name": "-webkit-sticky",
@@ -8080,7 +8625,8 @@ export const data = {
             "desc": "No snap points are defined by this scroll container."
           },
           {
-            "name": "repeat()"
+            "name": "repeat()",
+            "desc": "Defines an interval at which snap points are defined, starting from the container’s relevant start edge."
           }
         ]
       },
@@ -8095,7 +8641,8 @@ export const data = {
             "desc": "No snap points are defined by this scroll container."
           },
           {
-            "name": "repeat()"
+            "name": "repeat()",
+            "desc": "Defines an interval at which snap points are defined, starting from the container’s relevant start edge."
           }
         ]
       },
@@ -8143,6 +8690,28 @@ export const data = {
           {
             "name": "none",
             "desc": "The float area is unaffected."
+          }
+        ]
+      },
+      {
+        "name": "shape-rendering",
+        "desc": "Provides hints about what tradeoffs to make as it renders vector graphics elements such as <path> elements and basic shapes such as circles and rectangles.",
+        "restriction": "enum",
+        "values": [
+          {
+            "name": "auto",
+            "desc": "Suppresses aural rendering."
+          },
+          {
+            "name": "crispEdges"
+          },
+          {
+            "name": "geometricPrecision",
+            "desc": "Emphasize geometric precision over speed and crisp edges."
+          },
+          {
+            "name": "optimizeSpeed",
+            "desc": "Emphasize rendering speed over geometric precision and crisp edges."
           }
         ]
       },
@@ -8420,10 +8989,6 @@ export const data = {
             "name": "overline"
           },
           {
-            "name": "none",
-            "desc": "Produces no text decoration."
-          },
-          {
             "name": "solid"
           },
           {
@@ -8433,6 +8998,12 @@ export const data = {
             "name": "wavy"
           }
         ]
+      },
+      {
+        "name": "text-decoration-color",
+        "desc": "Specifies the color of text decoration (underlines overlines, and line-throughs) set on the element with text-decoration-line.",
+        "browsers": "FF36,C57,O44",
+        "restriction": "color"
       },
       {
         "name": "text-decoration-line",
@@ -8445,7 +9016,7 @@ export const data = {
           },
           {
             "name": "none",
-            "desc": "Produces no text decoration."
+            "desc": "Neither produces nor inhibits text decoration."
           },
           {
             "name": "overline"
@@ -8471,7 +9042,8 @@ export const data = {
             "name": "double"
           },
           {
-            "name": "none"
+            "name": "none",
+            "desc": "Produces no line."
           },
           {
             "name": "solid"
@@ -8564,7 +9136,8 @@ export const data = {
             "name": "auto"
           },
           {
-            "name": "geometricPrecision"
+            "name": "geometricPrecision",
+            "desc": "Indicates that the user agent shall emphasize geometric precision over legibility and rendering speed."
           },
           {
             "name": "optimizeLegibility"
@@ -9086,6 +9659,32 @@ export const data = {
           },
           {
             "name": "U+1F680–1F6FF"
+          }
+        ]
+      },
+      {
+        "name": "user-select",
+        "desc": "Controls the appearance of selection.",
+        "restriction": "enum",
+        "values": [
+          {
+            "name": "all",
+            "desc": "The content of the element must be selected atomically"
+          },
+          {
+            "name": "auto"
+          },
+          {
+            "name": "contain",
+            "desc": "UAs must not allow a selection which is started in this element to be extended outside of this element."
+          },
+          {
+            "name": "none",
+            "desc": "The UA must not allow selections to be started in this element."
+          },
+          {
+            "name": "text",
+            "desc": "The element imposes no constraint on the selection."
           }
         ]
       },
@@ -10670,10 +11269,12 @@ export const data = {
           },
           {
             "name": "max-content",
+            "desc": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           },
           {
             "name": "min-content",
+            "desc": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
             "browsers": "C46,O33"
           }
         ]
@@ -10689,7 +11290,8 @@ export const data = {
             "desc": "Expresses no particular intent."
           },
           {
-            "name": "contents"
+            "name": "contents",
+            "desc": "Indicates that the author expects to animate or change something about the element’s contents in the near future."
           },
           {
             "name": "scroll-position"
@@ -10791,7 +11393,6 @@ export const data = {
     ]
   }
 };
-
 export const descriptions = {
   "100": "Thin",
   "200": "Extra Light (Ultra Light)",
@@ -10802,6 +11403,8 @@ export const descriptions = {
   "700": "Bold",
   "800": "Extra Bold (Ultra Bold)",
   "900": "Black (Heavy)",
+  "self-end": "The item is packed flush to the edge of the alignment container of the end side of the item, in the appropriate axis.",
+  "self-start": "The item is packed flush to the edge of the alignment container of the start side of the item, in the appropriate axis..",
   "alternate": "The animation cycle iterations that are odd counts are played in the normal direction, and the animation cycle iterations that are even counts are played in a reverse direction.",
   "alternate-reverse": "The animation cycle iterations that are odd counts are played in the reverse direction, and the animation cycle iterations that are even counts are played in a normal direction.",
   "backwards": "The beginning property value (as defined in the first @keyframes at-rule) is applied before the animation is displayed, during the period defined by 'animation-delay'.",
@@ -10835,6 +11438,9 @@ export const descriptions = {
   "linearRGB": "Color operations should occur in the linearized RGB color space.",
   "sRGB": "Color operations should occur in the sRGB color space.",
   "balance": "Balance content equally between columns, if possible.",
+  "size": "For properties that can have effects on more than just an element and its descendants, those effects don't escape the containing element.",
+  "layout": "Turns on layout containment for the element.",
+  "paint": "Turns on paint containment for the element.",
   "attr()": "The attr(n) function returns as a string the value of attribute n for the subject of the selector.",
   "counter(name)": "Counters are denoted by identifiers (see the 'counter-increment' and 'counter-reset' properties).",
   "alias": "Indicates an alias of/shortcut to something is to be created. Often rendered as an arrow with a small curved arrow next to it.",
@@ -10882,6 +11488,8 @@ export const descriptions = {
   "block": "The element generates a block-level box",
   "flex": "The element generates a principal flex container box and establishes a flex formatting context.",
   "flexbox": "The element lays out its contents using flow layout (block-and-inline layout). Standardized as 'flex'.",
+  "flow-root": "The element generates a block container box, and lays out its contents using flow layout.",
+  "grid": "The element generates a principal grid container box, and establishes a grid formatting context.",
   "inline-block": "A block box, which itself is flowed as a single inline box, similar to a replaced element. The inside of an inline-block is formatted as a block box, and the box itself is formatted as an inline box.",
   "inline-flex": "Inline-level flex container.",
   "inline-flexbox": "Inline-level flex container. Standardized as 'inline-flex'",
@@ -10913,11 +11521,11 @@ export const descriptions = {
   "opacity()": "Applies transparency to the samples in the input image.",
   "saturate()": "Saturates the input image.",
   "sepia()": "Converts the input image to sepia.",
-  "content": "Indicates automatic sizing, based on the flex item’s content.",
   "column-reverse": "Same as 'column', except the main-start and main-end directions are swapped.",
-  "row": "The flex container’s main axis has the same orientation as the inline axis of the current writing mode.",
   "row-reverse": "Same as 'row', except the main-start and main-end directions are swapped.",
   "wrap-reverse": "Same as 'wrap', except the cross-start and cross-end directions are swapped.",
+  "inline-end": "A keyword indicating that the element must float on the end side of its containing block. That is the right side with ltr scripts, and the left side with rtl scripts.",
+  "inline-start": "A keyword indicating that the element must float on the start side of its containing block. That is the left side with ltr scripts, and the right side with rtl scripts.",
   "bold": "Same as 700",
   "bolder": "Specifies the weight of the face bolder than the inherited value.",
   "caption": "The font used for captioned controls (e.g., buttons, drop-downs, etc.).",
@@ -11036,7 +11644,6 @@ export const descriptions = {
   "\"zero\"": "Slashed Zero.",
   "narrower": "Indicates a narrower value relative to the width of the parent element.",
   "wider": "Indicates a wider value relative to the width of the parent element.",
-  "style": "Allow synthetic italic faces.",
   "weight": "Allow synthetic bold faces.",
   "annotation()": "Enables display of alternate annotation forms.",
   "character-variant()": "Enables display of specific character variants.",
@@ -11076,9 +11683,11 @@ export const descriptions = {
   "slashed-zero": "Enables display of slashed zeros.",
   "stacked-fractions": "Enables display of lining stacked fractions.",
   "tabular-nums": "Enables display of tabular numerals.",
+  "span": "Contributes a grid span to the grid item’s placement such that the corresponding edge of the grid item’s grid area is N lines from its opposite edge.",
+  "minmax()": "Defines a size range greater than or equal to min and less than or equal to max.",
+  "dense": "If specified, the auto-placement algorithm uses a “dense” packing algorithm, which attempts to fill in holes earlier in the grid if smaller items come up later.",
   "fit-content": "Use the fit-content inline size or fit-content block size, as appropriate to the writing mode.",
-  "max-content": "Use the max-content inline size or max-content block size, as appropriate to the writing mode.",
-  "min-content": "Use the min-content inline size or min-content block size, as appropriate to the writing mode.",
+  "manual": "Words are only broken at line breaks where there are characters inside the word that suggest line break opportunities",
   "flip": "After rotating by the precededing angle, the image is flipped horizontally. Defaults to 0deg if the angle is ommitted.",
   "from-image": "If the image has an orientation specified in its metadata, such as EXIF, this value computes to the angle that the metadata specifies is necessary to correctly orient the image.",
   "crisp-edges": "The image must be scaled with an algorithm that preserves contrast and edges in the image, and which does not smooth colors or introduce blur to the image in the process.",
@@ -11098,7 +11707,6 @@ export const descriptions = {
   "block-axis": "Elements are oriented along the box's axis.",
   "inline-axis": "Elements are oriented vertically.",
   "padding-box": "The specified width and height (and respective min/max properties) on this element determine the padding box of the element.",
-  "manual": "Words are only broken at line breaks where there are characters inside the word that suggest line break opportunities",
   "line-through": "Each line of text has a line through the middle.",
   "overline": "Each line of text has a line above it.",
   "underline": "Each line of text is underlined.",
@@ -11182,8 +11790,8 @@ export const descriptions = {
   "before": "The ruby text appears before the base. This is the most common setting used in ideographic East Asian writing systems.",
   "attr(x)": "The value of attribute 'x' is a string value. The string value is evaluated as a <number> to determine the number of ruby base elements to be spanned by the annotation element.",
   "smooth": "Scrolls in a smooth fashion using a user-agent-defined timing function and time period.",
-  "repeat()": "Defines an interval at which snap points are defined, starting from the container’s relevant start edge.",
   "margin-box": "The background is painted within (clipped to) the margin box.",
+  "crispEdges": "Emphasize the contrast between clean edges of artwork over rendering speed and geometric precision.",
   "format()": "Optional hint describing the format of the font resource.",
   "local()": "Format-specific string that identifies a locally available copy of a given font.",
   "butt": "Indicates that the stroke for each subpath does not extend beyond its two endpoints.",
@@ -11197,7 +11805,6 @@ export const descriptions = {
   "sideways": "This value is equivalent to 'sideways-right' in 'vertical-rl' writing mode and equivalent to 'sideways-left' in 'vertical-lr' writing mode.",
   "sideways-right": "In vertical writing modes, this causes text to be set as if in a horizontal layout, but rotated 90° clockwise.",
   "upright": "In vertical writing modes, characters from horizontal-only scripts are rendered upright, i.e. in their standard horizontal orientation.",
-  "geometricPrecision": "Indicates that the user agent shall emphasize geometric precision over legibility and rendering speed.",
   "optimizeLegibility": "Indicates that the user agent shall emphasize legibility over rendering speed and geometric precision.",
   "capitalize": "Puts the first typographic letter unit of each word in titlecase.",
   "lowercase": "Puts all letters in lowercase.",
@@ -11229,7 +11836,7 @@ export const descriptions = {
   "U+590–5FF": "Hebrew.",
   "U+600–6FF": "Arabic.",
   "U+750–77F": "Arabic Supplement. Additional letters for African languages, Khowar, Torwali, Burushaski, and early Persian.",
-  "U+8A0–8FF": "Arabic Extended-A. Additional letters for African languages, European and Central Asian languages, Rohingya, Berber, Arwi, and Koranic annotation signs.",
+  "U+8A0–8FF": "Arabic Extended-A. Additional letters for African languages, European and Central Asian languages, Rohingya, Tamazight, Arwi, and Koranic annotation signs.",
   "U+700–74F": "Syriac.",
   "U+900–97F": "Devanagari.",
   "U+980–9FF": "Bengali.",
@@ -11292,7 +11899,6 @@ export const descriptions = {
   "pre": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'none'.",
   "pre-line": "Sets 'white-space-collapsing' to 'preserve-breaks' and 'text-wrap' to 'normal'.",
   "pre-wrap": "Sets 'white-space-collapsing' to 'preserve' and 'text-wrap' to 'normal'.",
-  "contents": "Indicates that the author expects to animate or change something about the element’s contents in the near future.",
   "scroll-position": "Indicates that the author expects to animate or change the scroll position of the element in the near future.",
   "horizontal-tb": "Top-to-bottom block flow direction. The writing mode is horizontal.",
   "sideways-lr": "Left-to-right block flow direction. The writing mode is vertical, while the typographic mode is horizontal.",
