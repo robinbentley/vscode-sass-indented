@@ -16,7 +16,7 @@
 	<array>
 		<dict>
 			<key>begin</key>
-			<string>^(/\*|//)</string>
+			<string>^(/\*)</string>
 			<key>end</key>
 			<string>\*/|(?=^[a-zA-Z0-9#.%$@\[=*+])</string>
 			<key>name</key>
@@ -45,6 +45,10 @@
 				<dict>
 					<key>include</key>
 					<string>#comment-tag</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comment-param</string>
 				</dict>
 			</array>
 		</dict>
@@ -517,6 +521,10 @@
 				<dict>
 					<key>include</key>
 					<string>#comment-tag</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comment-param</string>
 				</dict>
 			</array>
 		</dict>
