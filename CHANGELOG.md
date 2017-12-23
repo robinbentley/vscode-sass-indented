@@ -1,7 +1,8 @@
 # Changelog
 
-| Version | Date | Changelog|
+| Version | Date | Changelog |
 | ------- | -------- | ------ |
+| 1.4.6 | 23.12.2017 | Correct comment scoping |
 | 1.4.5 | 18.10.2017 | Update CSS schema |
 | 1.4.4 | 12.10.2017 | Add github badge and update README |
 | 1.4.3 | 12.10.2017 | Add folding rule to language config. Add badges to README |
