@@ -2,6 +2,7 @@
 
 | Version | Date | Changelog |
 | ------- | -------- | ------ |
+| 1.4.8 | 16.02.2018 | Update auto indenting rules |
 | 1.4.7 | 16.02.2018 | Add auto indenting |
 | 1.4.6 | 23.12.2017 | Correct comment scoping |
 | 1.4.5 | 18.10.2017 | Update CSS schema |
