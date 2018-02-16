@@ -11,7 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
     wordPattern: /(#?-?\d*\.\d\w*%?)|([$@#!.:]?[\w-?]+%?)|[$@#!.]/g,
     onEnterRules: [
       {
-        beforeText: /^((?!^(\s+|.*: .*|.*@.*|.*,)$).*|.*@media(?!^\s+$).*)$/,
+        beforeText: /^((?!^(\s+|.*: .*|.*@.*|.*,|\s+\+.*)$).*|.*@media(?!^\s+$).*)$/,
         action: { indentAction: vscode.IndentAction.Indent }
       }
     ]
