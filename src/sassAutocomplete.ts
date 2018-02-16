@@ -14,18 +14,26 @@ import {
   Range,
   TextDocument,
   workspace
-} from 'vscode';
+} from "vscode";
 
-import * as cssSchema from './schemas/cssSchema';
-import sassSchema from './schemas/sassSchema';
+import * as cssSchema from "./schemas/cssSchema";
+import sassSchema from "./schemas/sassSchema";
 
 /**
  * Naive check whether currentWord is class, id or placeholder
  * @param {String} currentWord
  * @return {Boolean}
  */
-export function isClassOrId(currentWord:string) : boolean {
-  return currentWord.startsWith('.') || currentWord.startsWith('#') || currentWord.startsWith('%');
+export function isClassOrId(currentWord: string): boolean {
+  return (
+    currentWord.startsWith(".") ||
+    currentWord.startsWith("#") ||
+    currentWord.startsWith("%")
+  );
+}
+
+export function isSelector(currentWord: string): boolean {
+  return currentWord === "section" || currentWord === "div";
 }
 
 /**
@@ -33,8 +41,8 @@ export function isClassOrId(currentWord:string) : boolean {
  * @param {String} currentWord
  * @return {Boolean}
  */
-export function isAtRule(currentWord:string) : boolean {
-  return currentWord.startsWith('\@');
+export function isAtRule(currentWord: string): boolean {
+  return currentWord.startsWith("@");
 }
 
 /**
@@ -43,7 +51,7 @@ export function isAtRule(currentWord:string) : boolean {
  * @param {String} currentWord
  * @return {Boolean}
  */
-export function isValue(cssSchema, currentWord:string) : boolean {
+export function isValue(cssSchema, currentWord: string): boolean {
   const property = getPropertyName(currentWord);
 
   return property && Boolean(findPropertySchema(cssSchema, property));
@@ -54,8 +62,11 @@ export function isValue(cssSchema, currentWord:string) : boolean {
  * @param {String} currentWord
  * @return {String}
  */
-export function getPropertyName(currentWord:string) : string {
-  return currentWord.trim().replace(':', ' ').split(' ')[0];
+export function getPropertyName(currentWord: string): string {
+  return currentWord
+    .trim()
+    .replace(":", " ")
+    .split(" ")[0];
 }
 
 /**
@@ -64,7 +75,7 @@ export function getPropertyName(currentWord:string) : string {
  * @param {String} property
  * @return {Object}
  */
-export function findPropertySchema(cssSchema, property:string) {
+export function findPropertySchema(cssSchema, property: string) {
   return cssSchema.data.css.properties.find(item => item.name === property);
 }
 
@@ -74,7 +85,7 @@ export function findPropertySchema(cssSchema, property:string) {
  * @param {String} currentWord
  * @return {CompletionItem}
  */
-export function getAtRules(cssSchema, currentWord:string) : CompletionItem[] {
+export function getAtRules(cssSchema, currentWord: string): CompletionItem[] {
   if (!isAtRule(currentWord)) return [];
 
   return cssSchema.data.css.atdirectives.map(property => {
@@ -93,13 +104,22 @@ export function getAtRules(cssSchema, currentWord:string) : CompletionItem[] {
  * @param {String} currentWord
  * @return {CompletionItem}
  */
-export function getProperties(cssSchema, currentWord:string, useSeparator:boolean) : CompletionItem[] {
-  if (isClassOrId(currentWord) || isAtRule(currentWord)) return [];
+export function getProperties(
+  cssSchema,
+  currentWord: string,
+  useSeparator: boolean
+): CompletionItem[] {
+  if (
+    isClassOrId(currentWord) ||
+    isAtRule(currentWord) ||
+    isSelector(currentWord)
+  )
+    return [];
 
   return cssSchema.data.css.properties.map(property => {
     const completionItem = new CompletionItem(property.name);
 
-    completionItem.insertText = property.name + (useSeparator ? ': ' : ' ');
+    completionItem.insertText = property.name + (useSeparator ? ": " : " ");
     completionItem.detail = property.desc;
     completionItem.kind = CompletionItemKind.Property;
 
@@ -113,7 +133,7 @@ export function getProperties(cssSchema, currentWord:string, useSeparator:boolea
  * @param {String} currentWord
  * @return {CompletionItem}
  */
-export function getValues(cssSchema, currentWord:string) : CompletionItem[] {
+export function getValues(cssSchema, currentWord: string): CompletionItem[] {
   const property = getPropertyName(currentWord);
   const values = findPropertySchema(cssSchema, property).values;
 
@@ -130,31 +150,34 @@ export function getValues(cssSchema, currentWord:string) : CompletionItem[] {
 }
 
 class SassCompletion implements CompletionItemProvider {
-  provideCompletionItems(document: TextDocument, position: Position, token: CancellationToken) : CompletionItem[] {
+  provideCompletionItems(
+    document: TextDocument,
+    position: Position,
+    token: CancellationToken
+  ): CompletionItem[] {
     const start = new Position(position.line, 0);
     const range = new Range(start, position);
     const currentWord = document.getText(range).trim();
     const text = document.getText();
     const value = isValue(cssSchema, currentWord);
-    const config = workspace.getConfiguration('sass-indented');
+    const config = workspace.getConfiguration("sass-indented");
 
     let atRules = [],
-        properties = [],
-        values = [];
+      properties = [],
+      values = [];
 
     if (value) {
       values = getValues(cssSchema, currentWord);
     } else {
       atRules = getAtRules(cssSchema, currentWord);
-      properties = getProperties(cssSchema, currentWord, config.get('useSeparator', true));
+      properties = getProperties(
+        cssSchema,
+        currentWord,
+        config.get("useSeparator", true)
+      );
     }
 
-    const completions = [].concat(
-      atRules,
-      properties,
-      values,
-      sassSchema
-    );
+    const completions = [].concat(atRules, properties, values, sassSchema);
 
     return completions;
   }
