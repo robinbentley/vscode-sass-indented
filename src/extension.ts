@@ -18,8 +18,10 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   const sassCompletion = new SassCompletion();
-  const sassCompletionRegister = vscode.languages.registerCompletionItemProvider(
-    "sass",
+  const sassCompletionRegister = vscode.languages.registerCompletionItemProvider([
+      { language: "sass", scheme: "file" },
+      { language: "sass", scheme: "untitled" },
+    ],
     sassCompletion,
     "\\.",
     "@"
