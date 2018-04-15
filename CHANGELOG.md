@@ -2,6 +2,7 @@
 
 | Version | Date | Changelog |
 | ------- | -------- | ------ |
+| 1.4.9 | 15.04.2018 | Restrict language services to local files |
 | 1.4.8 | 16.02.2018 | Update auto indenting rules |
 | 1.4.7 | 16.02.2018 | Add auto indenting |
 | 1.4.6 | 23.12.2017 | Correct comment scoping |
