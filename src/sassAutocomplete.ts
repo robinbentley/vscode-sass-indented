@@ -14,10 +14,10 @@ import {
   Range,
   TextDocument,
   workspace
-} from "vscode";
+} from 'vscode';
 
-import * as cssSchema from "./schemas/cssSchema";
-import sassSchema from "./schemas/sassSchema";
+import * as cssSchema from './schemas/cssSchema';
+import sassSchema from './schemas/sassSchema';
 
 /**
  * Naive check whether currentWord is class, id or placeholder
@@ -26,14 +26,14 @@ import sassSchema from "./schemas/sassSchema";
  */
 export function isClassOrId(currentWord: string): boolean {
   return (
-    currentWord.startsWith(".") ||
-    currentWord.startsWith("#") ||
-    currentWord.startsWith("%")
+    currentWord.startsWith('.') ||
+    currentWord.startsWith('#') ||
+    currentWord.startsWith('%')
   );
 }
 
 export function isSelector(currentWord: string): boolean {
-  return currentWord === "section" || currentWord === "div";
+  return currentWord === 'section' || currentWord === 'div';
 }
 
 /**
@@ -42,7 +42,7 @@ export function isSelector(currentWord: string): boolean {
  * @return {Boolean}
  */
 export function isAtRule(currentWord: string): boolean {
-  return currentWord.startsWith("@");
+  return currentWord.startsWith('@');
 }
 
 /**
@@ -65,8 +65,8 @@ export function isValue(cssSchema, currentWord: string): boolean {
 export function getPropertyName(currentWord: string): string {
   return currentWord
     .trim()
-    .replace(":", " ")
-    .split(" ")[0];
+    .replace(':', ' ')
+    .split(' ')[0];
 }
 
 /**
@@ -86,7 +86,9 @@ export function findPropertySchema(cssSchema, property: string) {
  * @return {CompletionItem}
  */
 export function getAtRules(cssSchema, currentWord: string): CompletionItem[] {
-  if (!isAtRule(currentWord)) return [];
+  if (!isAtRule(currentWord)) {
+    return [];
+  }
 
   return cssSchema.data.css.atdirectives.map(property => {
     const completionItem = new CompletionItem(property.name);
@@ -113,13 +115,14 @@ export function getProperties(
     isClassOrId(currentWord) ||
     isAtRule(currentWord) ||
     isSelector(currentWord)
-  )
+  ) {
     return [];
+  }
 
   return cssSchema.data.css.properties.map(property => {
     const completionItem = new CompletionItem(property.name);
 
-    completionItem.insertText = property.name + (useSeparator ? ": " : " ");
+    completionItem.insertText = property.name + (useSeparator ? ': ' : ' ');
     completionItem.detail = property.desc;
     completionItem.kind = CompletionItemKind.Property;
 
@@ -137,7 +140,9 @@ export function getValues(cssSchema, currentWord: string): CompletionItem[] {
   const property = getPropertyName(currentWord);
   const values = findPropertySchema(cssSchema, property).values;
 
-  if (!values) return [];
+  if (!values) {
+    return [];
+  }
 
   return values.map(property => {
     const completionItem = new CompletionItem(property.name);
@@ -160,7 +165,7 @@ class SassCompletion implements CompletionItemProvider {
     const currentWord = document.getText(range).trim();
     const text = document.getText();
     const value = isValue(cssSchema, currentWord);
-    const config = workspace.getConfiguration("sass-indented");
+    const config = workspace.getConfiguration('sass-indented');
 
     let atRules = [],
       properties = [],
@@ -173,7 +178,7 @@ class SassCompletion implements CompletionItemProvider {
       properties = getProperties(
         cssSchema,
         currentWord,
-        config.get("useSeparator", true)
+        config.get('useSeparator', true)
       );
     }
 
