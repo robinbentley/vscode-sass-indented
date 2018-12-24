@@ -14,6 +14,14 @@ Search for Sass from the extension installer within VSCode or put this into the 
 ext install sass-indented
 ```
 
+## Configuration
+
+Configuration options can be set in the `Sass (Indented)` section of VSCode settings or by editing your `settings.json` directly.
+
+| Option | Type  | Default  | Description  |
+|---|---|---|---|
+| `sass.disableAutoIndent` | boolean  | false  | Stop the extension from automatically indenting when pressing Enter |
+
 ## Property/Value Autocompletion & Emmet
 Autocompletion for css properties and built in language functions _(@warn, @at-root, lighten(), darken() etc)_ is built in. As of version 1.3 VSCode supports Emmet in .sass files, the original snippets for css properties have been removed.
 
