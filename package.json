@@ -2,7 +2,7 @@
     "name": "sass-indented",
     "displayName": "Sass",
     "description": "Indented Sass syntax highlighting, autocomplete & snippets",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "icon": "images/sass-logo-seal.png",
     "publisher": "robinbentley",
     "repository": {
