@@ -22,6 +22,17 @@
         "Snippets"
     ],
     "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "Sass (Indented)",
+            "properties": {
+                "sass.disableAutoIndent": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Stop the extension from automatically indenting when pressing Enter"
+                }
+            }
+        },
         "languages": [
             {
                 "id": "sass",
