@@ -51,7 +51,7 @@
             {
                 "language": "sass",
                 "scopeName": "source.sass",
-                "path": "./syntaxes/sass.tmLanguage"
+                "path": "./syntaxes/sass.json"
             }
         ],
         "snippets": [
