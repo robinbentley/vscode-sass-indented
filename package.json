@@ -69,9 +69,9 @@
         "lint": "tslint --fix -c tslint.json 'src/**/*.ts'"
     },
     "devDependencies": {
-        "typescript": "^3.2.2",
-        "vscode": "^1.1.26",
+        "@types/node": "^8.10.25",
         "tslint": "^5.8.0",
-        "@types/node": "^8.10.25"
+        "typescript": "^3.2.2",
+        "vscode": "^1.1.33"
     }
 }

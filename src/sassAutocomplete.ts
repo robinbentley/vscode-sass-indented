@@ -18,6 +18,8 @@ import {
 
 import * as cssSchema from './schemas/cssSchema';
 import sassSchema from './schemas/sassSchema';
+import sassSchemaUnits from './schemas/sassSchemaUnits';
+import * as validWords from './schemas/validWords';
 
 /**
  * Naive check whether currentWord is class, id or placeholder
@@ -166,6 +168,18 @@ class SassCompletion implements CompletionItemProvider {
     const text = document.getText();
     const value = isValue(cssSchema, currentWord);
     const config = workspace.getConfiguration('sass-indented');
+    
+
+    let addNums = [];
+    
+    if (validWords) {
+      validWords.words.forEach(word => {
+        if (word.name == currentWord) {
+          addNums = [].concat(sassSchemaUnits)
+          return;
+        };
+      })
+    }
 
     let atRules = [],
       properties = [],
@@ -182,7 +196,7 @@ class SassCompletion implements CompletionItemProvider {
       );
     }
 
-    const completions = [].concat(atRules, properties, values, sassSchema);
+     const completions = [].concat(atRules, properties, values, sassSchema, addNums);
 
     return completions;
   }
