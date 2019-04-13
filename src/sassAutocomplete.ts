@@ -196,7 +196,7 @@ class SassCompletion implements CompletionItemProvider {
       );
     }
 
-     const completions = [].concat(atRules, properties, values, sassSchema, addNums);
+    const completions = [].concat(atRules, properties, values, sassSchema, addNums);
 
     return completions;
   }
