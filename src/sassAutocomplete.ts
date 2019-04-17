@@ -155,6 +155,15 @@ export function getValues(cssSchema, currentWord: string): CompletionItem[] {
     return completionItem;
   });
 }
+/**
+ * checks if currentWord is a number!?
+ * @param {String} currentWord
+ * @return {CompletionItem}
+ */
+export function isNumber(currentWord: string): boolean {
+  const reg = /([\d])$|([\s]?[\d][\.])$/;
+  return reg.test(currentWord);
+}
 
 class SassCompletion implements CompletionItemProvider {
   provideCompletionItems(
@@ -168,17 +177,20 @@ class SassCompletion implements CompletionItemProvider {
     const text = document.getText();
     const value = isValue(cssSchema, currentWord);
     const config = workspace.getConfiguration('sass-indented');
-    
 
-    let addNums = [];
-    
+    let addUnits = [];
+
     if (validWords) {
       validWords.words.forEach(word => {
-        if (word.name == currentWord) {
-          addNums = [].concat(sassSchemaUnits)
+        if (word.name === currentWord) {
+          addUnits = [].concat(sassSchemaUnits);
           return;
-        };
-      })
+        }
+      });
+    }
+    const isNumbera = isNumber(currentWord);
+    if (isNumber(currentWord)) {
+      addUnits = [].concat(sassSchemaUnits);
     }
 
     let atRules = [],
@@ -196,7 +208,13 @@ class SassCompletion implements CompletionItemProvider {
       );
     }
 
-    const completions = [].concat(atRules, properties, values, sassSchema, addNums);
+    const completions = [].concat(
+      atRules,
+      properties,
+      values,
+      sassSchema,
+      addUnits
+    );
 
     return completions;
   }
