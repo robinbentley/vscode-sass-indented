@@ -178,19 +178,19 @@ class SassCompletion implements CompletionItemProvider {
     const value = isValue(cssSchema, currentWord);
     const config = workspace.getConfiguration('sass-indented');
 
-    let addUnits = [];
+    let Units = [];
 
     if (validWords) {
       validWords.words.forEach(word => {
         if (word.name === currentWord) {
-          addUnits = [].concat(sassSchemaUnits);
+          Units = [].concat(sassSchemaUnits);
           return;
         }
       });
     }
-    const isNumbera = isNumber(currentWord);
+    const addUnits = isNumber(currentWord);
     if (isNumber(currentWord)) {
-      addUnits = [].concat(sassSchemaUnits);
+      Units = [].concat(sassSchemaUnits);
     }
 
     let atRules = [],
@@ -213,9 +213,8 @@ class SassCompletion implements CompletionItemProvider {
       properties,
       values,
       sassSchema,
-      addUnits
+      Units
     );
-
     return completions;
   }
 }

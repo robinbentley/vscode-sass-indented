@@ -1,77 +1,77 @@
 {
-    "name": "sass-indented",
-    "displayName": "Sass",
-    "description": "Indented Sass syntax highlighting, autocomplete & snippets",
-    "version": "1.5.1",
-    "icon": "images/sass-logo-seal.png",
-    "publisher": "robinbentley",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/robinbentley/vscode-sass-indented"
+  "name": "sass-indented",
+  "displayName": "Sass",
+  "description": "Indented Sass syntax highlighting, autocomplete & snippets",
+  "version": "1.5.2",
+  "icon": "images/sass-logo-seal.png",
+  "publisher": "robinbentley",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robinbentley/vscode-sass-indented"
+  },
+  "bugs": "https://github.com/robinbentley/vscode-sass-indented/issues",
+  "engines": {
+    "vscode": "^1.30.0"
+  },
+  "activationEvents": [
+    "onLanguage:sass"
+  ],
+  "main": "./out/extension",
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Sass (Indented)",
+      "properties": {
+        "sass.disableAutoIndent": {
+          "type": "boolean",
+          "default": false,
+          "description": "Stop the extension from automatically indenting when pressing Enter"
+        }
+      }
     },
-    "bugs": "https://github.com/robinbentley/vscode-sass-indented/issues",
-    "engines": {
-        "vscode": "^1.30.0"
-    },
-    "activationEvents": [
-        "onLanguage:sass"
-    ],
-    "main": "./out/extension",
-    "categories": [
-        "Programming Languages",
-        "Snippets"
-    ],
-    "contributes": {
-        "configuration": {
-            "type": "object",
-            "title": "Sass (Indented)",
-            "properties": {
-                "sass.disableAutoIndent": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Stop the extension from automatically indenting when pressing Enter"
-                }
-            }
-        },
-        "languages": [
-            {
-                "id": "sass",
-                "aliases": [
-                    "Sass",
-                    "sass-indented"
-                ],
-                "extensions": [
-                    ".sass",
-                    ".sass.erb"
-                ],
-                "configuration": "./sass.configuration.json"
-            }
+    "languages": [
+      {
+        "id": "sass",
+        "aliases": [
+          "Sass",
+          "sass-indented"
         ],
-        "grammars": [
-            {
-                "language": "sass",
-                "scopeName": "source.sass",
-                "path": "./syntaxes/sass.tmLanguage"
-            }
+        "extensions": [
+          ".sass",
+          ".sass.erb"
         ],
-        "snippets": [
-            {
-                "language": "sass",
-                "path": "./snippets/sass.json"
-            }
-        ]
-    },
-    "scripts": {
-        "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "lint": "tslint --fix -c tslint.json 'src/**/*.ts'"
-    },
-    "devDependencies": {
-        "@types/node": "^8.10.25",
-        "tslint": "^5.8.0",
-        "typescript": "^3.2.2",
-        "vscode": "^1.1.33"
-    }
+        "configuration": "./sass.configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "sass",
+        "scopeName": "source.sass",
+        "path": "./syntaxes/sass.tmLanguage"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "sass",
+        "path": "./snippets/sass.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "lint": "tslint --fix -c tslint.json 'src/**/*.ts'"
+  },
+  "devDependencies": {
+    "@types/node": "^8.10.25",
+    "tslint": "^5.8.0",
+    "typescript": "^3.2.2",
+    "vscode": "^1.1.33"
+  }
 }
