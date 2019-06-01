@@ -13,11 +13,13 @@ import {
   Position,
   Range,
   TextDocument,
-  workspace
+  workspace,
+  SnippetString
 } from 'vscode';
 
 import * as cssSchema from './schemas/cssSchema';
 import sassSchema from './schemas/sassSchema';
+import sassSchemaUnits from './schemas/sassSchemaUnits';
 
 /**
  * Naive check whether currentWord is class, id or placeholder
@@ -25,11 +27,7 @@ import sassSchema from './schemas/sassSchema';
  * @return {Boolean}
  */
 export function isClassOrId(currentWord: string): boolean {
-  return (
-    currentWord.startsWith('.') ||
-    currentWord.startsWith('#') ||
-    currentWord.startsWith('%')
-  );
+  return currentWord.startsWith('.') || currentWord.startsWith('#') || currentWord.startsWith('%');
 }
 
 export function isSelector(currentWord: string): boolean {
@@ -106,16 +104,8 @@ export function getAtRules(cssSchema, currentWord: string): CompletionItem[] {
  * @param {String} currentWord
  * @return {CompletionItem}
  */
-export function getProperties(
-  cssSchema,
-  currentWord: string,
-  useSeparator: boolean
-): CompletionItem[] {
-  if (
-    isClassOrId(currentWord) ||
-    isAtRule(currentWord) ||
-    isSelector(currentWord)
-  ) {
+export function getProperties(cssSchema, currentWord: string, useSeparator: boolean): CompletionItem[] {
+  if (isClassOrId(currentWord) || isAtRule(currentWord) || isSelector(currentWord)) {
     return [];
   }
 
@@ -153,37 +143,86 @@ export function getValues(cssSchema, currentWord: string): CompletionItem[] {
     return completionItem;
   });
 }
+/**
+ * checks if currentWord last char is a number?
+ * @param {String} currentWord
+ * @return {CompletionItem}
+ */
+export function isNumber(currentWord: string): boolean {
+  const reg = /[0-9]$/;
+  return reg.test(currentWord);
+}
+/**
+ * gets variable completions.
+ * @param text
+ */
+export function getVariables(text: string) {
+  const regex = /\${1}\S*:/g;
+  let m;
+  const variables = [];
+
+  while ((m = regex.exec(text)) !== null) {
+    if (m.index === regex.lastIndex) {
+      regex.lastIndex++;
+    }
+    m.forEach((match: string) => {
+      const rep = match.replace(':', '');
+      const completionItem = new CompletionItem(rep.replace('$', ''));
+      completionItem.insertText = rep;
+      completionItem.detail = 'Sass Variable.';
+
+      completionItem.kind = CompletionItemKind.Variable;
+      variables.push(completionItem);
+    });
+  }
+  return variables;
+}
+/**
+ * gets unit completions.
+ * @param currentword
+ */
+export function getUnits(currentword: string) {
+  const units = [];
+
+  sassSchemaUnits.forEach(item => {
+    const lastWord = currentword.split(' ');
+    const rep = lastWord[lastWord.length - 1];
+    const completionItem = new CompletionItem(rep + item.name);
+    completionItem.insertText = new SnippetString(rep + item.body);
+    completionItem.detail = item.description;
+    completionItem.kind = CompletionItemKind.Unit;
+    units.push(completionItem);
+  });
+  return units;
+}
 
 class SassCompletion implements CompletionItemProvider {
-  provideCompletionItems(
-    document: TextDocument,
-    position: Position,
-    token: CancellationToken
-  ): CompletionItem[] {
+  provideCompletionItems(document: TextDocument, position: Position, token: CancellationToken): CompletionItem[] {
     const start = new Position(position.line, 0);
     const range = new Range(start, position);
     const currentWord = document.getText(range).trim();
+    const currentWordUT = document.getText(range);
     const text = document.getText();
     const value = isValue(cssSchema, currentWord);
     const config = workspace.getConfiguration('sass-indented');
 
     let atRules = [],
+      Units = [],
       properties = [],
-      values = [];
+      values = [],
+      variables = [];
 
+    if (isNumber(currentWordUT)) {
+      Units = getUnits(currentWord);
+    }
     if (value) {
       values = getValues(cssSchema, currentWord);
+      variables = getVariables(text);
     } else {
       atRules = getAtRules(cssSchema, currentWord);
-      properties = getProperties(
-        cssSchema,
-        currentWord,
-        config.get('useSeparator', true)
-      );
+      properties = getProperties(cssSchema, currentWord, config.get('useSeparator', true));
     }
-
-    const completions = [].concat(atRules, properties, values, sassSchema);
-
+    const completions = [].concat(atRules, properties, values, sassSchema, Units, variables);
     return completions;
   }
 }

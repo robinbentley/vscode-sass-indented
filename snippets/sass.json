@@ -6,43 +6,32 @@
   },
   "mixin": {
     "prefix": "mixin",
-    "body": [
-      "=${1:name}(${2:args})",
-      "\t$0"
-    ],
+    "body": ["=${1:name}(${2:args})", "\t$0"],
     "description": "Create a new mixin"
   },
   "@if-statement": {
     "prefix": "if",
-    "body": [
-      "@if ${1:statement}",
-      "\t$0"
-    ],
+    "body": ["@if ${1:statement}", "\t$0"],
     "description": "@if statement (e.g @if 1 + 1 == 2)"
   },
   "@for-loop": {
     "prefix": "for",
-    "body": [
-      "@for $${1:var} from ${2:1} through ${3:10}",
-      "\t$0"
-    ],
+    "body": ["@for $${1:var} from ${2:1} through ${3:10}", "\t$0"],
     "description": "@for loop"
   },
   "@each-loop": {
     "prefix": "each",
-    "body": [
-      "@each $${1:var} in ${2:list/map}",
-      "\t$0"
-    ],
+    "body": ["@each $${1:var} in ${2:list/map}", "\t$0"],
     "description": "@each loop"
   },
   "@while-loop": {
     "prefix": "while",
-    "body": [
-      "@while $${1:i} ${2:statement}",
-      "\t$0",
-      "\t$${1:i}: $${1:i} ${3://increment/deincrement}"
-    ],
+    "body": ["@while $${1:i} ${2:statement}", "\t$0", "\t$${1:i}: $${1:i} ${3://increment/deincrement}"],
     "description": "@while loop"
+  },
+  "keyframes": {
+    "prefix": "kf",
+    "body": ["@keyframes $1", "\t0%", "\t\t$2", "\t100%", "\t\t$3"],
+    "description": "@keyframes"
   }
 }
