@@ -9,7 +9,7 @@ import SassCompletion from './sassAutocomplete';
 export function activate(context: vscode.ExtensionContext) {
   setSassLanguageConfiguration();
 
-  const sassCompletion = new SassCompletion();
+  const sassCompletion = new SassCompletion(context);
   const sassCompletionRegister = vscode.languages.registerCompletionItemProvider(
     [{ language: 'sass', scheme: 'file' }, { language: 'sass', scheme: 'untitled' }],
     sassCompletion,

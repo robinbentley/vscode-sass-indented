@@ -137,3 +137,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,macos,linux,windows,visualstudiocode
+sass-indented-1.5.1.vsix
