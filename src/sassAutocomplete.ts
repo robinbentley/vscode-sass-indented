@@ -256,7 +256,7 @@ class SassCompletion implements CompletionItemProvider {
     if (value) {
       values = getValues(cssSchema, currentWord);
       imports.forEach(item => {
-        const varArr = this.context.workspaceState.get(path.normalize(path.join(document.fileName, item)));
+        const varArr = this.context.workspaceState.get(path.normalize(path.join(document.fileName, '../', item)));
         if (varArr) {
           variables = variables.concat(varArr);
         }
